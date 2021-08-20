@@ -22,3 +22,28 @@
     height: 100%;
     z-index: 1;
 }
+
+.carousel-caption {
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item__description {
+  padding-left: 30px;
+  width: 20%;
+}
+
+.carousel-item__title1, .carousel-item__title2, .carousel-item__title3 {
+  font-size: 50px;
+}
+
+.rating_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item__icon {
+  height: 40px;
+  width: auto;
+}
