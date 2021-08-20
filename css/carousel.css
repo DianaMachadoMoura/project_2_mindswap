@@ -1,0 +1,24 @@
+
+
+  * {
+    box-sizing: border-box;
+  }
+
+
+/* CAROUSEL */
+.carousel-slide {
+    width: auto;
+    height: 100%;
+}
+
+.carousel-item {
+    background-size: cover;
+    height: 100vh;
+}
+
+.carousel-item__color {
+    background: #050610a1;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
