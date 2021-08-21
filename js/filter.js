@@ -38,7 +38,7 @@ const infiniteScroll = () => {
     if (window.scrollY > (document.body.offsetHeight - 100) && !isScrolled) {
         isScrolled = true;
         pageNum++;
-        getMoviesByYear(pageNum);
+        getPopularMovies(pageNum);
         setTimeout(() => {
             isScrolled = false;
         }, 1000);
