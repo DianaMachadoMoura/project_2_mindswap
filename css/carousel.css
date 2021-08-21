@@ -27,7 +27,7 @@
 
 .carousel-item__description {
   padding-left: 30px;
-  width: 50%;
+  width: 40%;
   text-align: left;
 }
 
@@ -39,12 +39,46 @@
   font-size: 50px;
 }
 
+.carousel-item__date1, .carousel-item__date2, .carousel-item__date3 {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.carousel-item__overview1, .carousel-item__overview2, .carousel-item__overview3 {
+  font-size: 1.1em;
+  line-height: 1.2;
+}
+
 .rating_wrapper {
   display: flex;
   align-items: center;
+  margin: 10px 0;
 }
 
 .carousel-item__icon {
-  height: 25px;
+  height: 35px;
   width: auto;
+}
+
+.carousel-item__rating1, .carousel-item__rating2, .carousel-item__rating3 {
+  margin: 0 10px;
+  font-size: 1.5em;
+}
+
+.carousel-item__trailer-button1, .carousel-item__trailer-button2, .carousel-item__trailer-button3 {
+  width: 200px;
+  height: 40px;
+  background-color: transparent;
+  color: #be1313;
+  font-size: 1.5em;
+  border: 2px solid #be1313;
+  border-radius: 10%;
+  margin-top: 10px;
+}
+
+.carousel-item__trailer-button1:hover, .carousel-item__trailer-button2:hover, .carousel-item__trailer-button3:hover {
+  background-color: #be1313;
+  color: white;
+  transition:  1s;
+  opacity: 80%;
 }
