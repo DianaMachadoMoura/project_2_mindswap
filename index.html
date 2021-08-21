@@ -9,6 +9,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/filter.css">
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -20,6 +21,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src='js/carousel.js'></script>
+    <script src='js/filter.js'></script>
 
     <title>Document</title>
 </head>
@@ -117,6 +119,26 @@
             </a>
         </div>
     </header>
+
+    <!-- Genres and filter navbar -->
+    <nav id="filter-bar-nav">
+        <ul class="filter-bar__list">
+            <li class="filter-bar__list-item list-item__selected">Popular</li>
+            <li class="filter-bar__list-item">Recently added</li>
+            <li class="filter-bar__list-item">Action</li>
+            <li class="filter-bar__list-item">Drama</li>
+            <li class="filter-bar__list-item">Comedy</li>
+            <li class="filter-bar__list-item">Family</li>
+            <li class="filter-bar__list-item">Horror</li>
+            <li class="filter-bar__list-item">Sci-Fi</li>
+            <li class="filter-bar__list-item">Thriller</li>
+        </ul>
+        <span class="filter-bar__filter">Filter</span>
+    </nav>
+
+    <!-- Movies filter result container -->
+    <section id="movies_container"></section>
+
 
 </body>
 

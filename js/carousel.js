@@ -14,13 +14,12 @@ async function setCarousel() {
 
     await getGenres();
 
-    // SEARCHING 'NOW PLAYING' MOVIES
-    let dataNowPlayingMovies = await getNowPlayingMovies();
+    await getNowPlayingMovies();
 }
 
 function getGenres() {
-    const getGenres = '/genre/movie/list?';
-    return fetch(APIRequestPrefix + getGenres + APIKey + '&language=en-US')
+    const genresEndpoint = '/genre/movie/list?';
+    return fetch(APIRequestPrefix + genresEndpoint + APIKey + '&language=en-US')
         .then(response => {
             return response.json();
         })
@@ -40,6 +39,7 @@ async function getNowPlayingMovies() {
 }
 
 function displayGenres(arr) {
+
     let strinToReturn = '- ';
     for (genre of arr) {
         for (let i = 0; i < genresArr.length; i++) {
@@ -59,14 +59,13 @@ async function populateCarousel(data) {
             count++;
             $('#carousel__img' + count).css('background-image', 'url(' + 'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path + ')');
             $('.carousel-item__poster' + count).attr('src', 'https://image.tmdb.org/t/p/w500/' + movie.poster_path);
-            $('.carousel-item__title' + count).html(movie.original_title);
+            $('.carousel-item__title' + count).html(movie.title);
             const dateYear = movie.release_date.split('-')[0];
             $('.carousel-item__date' + count).html(dateYear);
             $('.carousel-item__genres' + count).html(displayGenres(movie.genre_ids));
             $('.carousel-item__rating' + count).html(movie.vote_average);
             $('.carousel-item__overview' + count).html(movie.overview);
             let youtubeKey = await getYoutubeKey(movie.id);
-            console.log(youtubeKey);
             $('.carousel-item__trailer-button' + count).attr('onclick',`window.open('https://www.youtube.com/watch?v=${youtubeKey}?start=5&autoplay=1', '_blank')`);
         }
         if (count == 3) {
