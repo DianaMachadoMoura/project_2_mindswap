@@ -1,0 +1,38 @@
+#filter-bar-nav {
+    background: rgb(22, 22, 22);
+    color: rgb(145, 145, 145);
+    font-weight:500;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.filter-bar__list {
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+}
+
+.filter-bar__list > li {
+    padding: 5px 5px;
+    margin-left:5px;
+    border-bottom: 3px solid transparent;
+    text-transform: uppercase;
+    transition: border-bottom 2.5s;
+}
+
+.filter-bar__list > li:hover {
+    color: white;
+    border-bottom: 3px solid rgb(190, 190, 190);
+    transition:  2s;
+
+}
+
+#movies_container {
+    margin: 5%;
+}
+
+.list-item__selected {
+    color: white;
+    border-bottom: 3px solid rgb(190, 190, 190) !important;
+}
