@@ -1,15 +1,3 @@
-
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body{
-    font-size: 0.9em;
-    font-family: sans-serif;
-  }
-
-
 /* CAROUSEL */
 .carousel-slide {
     width: auto;
@@ -31,7 +19,6 @@
 .carousel-caption {
   justify-content: center;
   align-items: center;
-  
 }
 
 .carousel-caption > img {

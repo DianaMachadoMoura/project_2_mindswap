@@ -19,7 +19,6 @@ const getPopularMovies = (page) => {
     fetch(url)
         .then(results => results.json())
         .then(data => {
-            console.log(data);
             for (let i = 0; i < data.results.length; i++) {
                 if (data.results[i].poster_path) {
                     movies.push(data.results[i]);
@@ -27,7 +26,7 @@ const getPopularMovies = (page) => {
                     let title = data.results[i].title;
                     let date = data.results[i].release_date.split('-')[0];
                     let rating = data.results[i].vote_average;
-                    htmlStr += `<div style='float:left;margin:30px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;'>${title}</p><p>${date}</p><div style='display:flex;'><img src='resources/stars.png' style='width:15px;'><p>${rating}</p></div></div></div>`;
+                    htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
                 }
             }
             document.getElementById('movies_container').innerHTML += htmlStr;
@@ -39,7 +38,7 @@ const infiniteScroll = () => {
     if (window.scrollY > (document.body.offsetHeight - 100) && !isScrolled) {
         isScrolled = true;
         pageNum++;
-        getMoviesByYear(year, pageNum);
+        getMoviesByYear(pageNum);
         setTimeout(() => {
             isScrolled = false;
         }, 1000);
