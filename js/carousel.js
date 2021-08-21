@@ -5,23 +5,29 @@ $(document).ready(function () {
     const APIRequestPrefix = 'https://api.themoviedb.org/3/';
     let genresArr;
 
-    // GET MOVIE GENRES
-    function getGenres(APIRequestPrefix, APIKey) {
-        const getGenres = '/genre/movie/list?';
-        fetch(APIRequestPrefix + getGenres + APIKey + '&language=en-US')
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                genresArr = data.genres;
-            })
-            .catch(error => console.log(error));
-
-    }
-
     getGenres(APIRequestPrefix, APIKey);
 
+    console.log(genresArr);
     // SEARCHING 'NOW PLAYING' MOVIES
+    getNowPlayingMovies(APIRequestPrefix, APIKey, genresArr); // undefined
+
+});
+
+// GET MOVIE GENRES
+function getGenres(APIRequestPrefix, APIKey) {
+    const getGenres = '/genre/movie/list?';
+    fetch(APIRequestPrefix + getGenres + APIKey + '&language=en-US')
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            genresArr = data.genres;
+        })
+        .catch(error => console.log(error));
+}
+
+function getNowPlayingMovies(APIRequestPrefix, APIKey, genresArr) {
+
     fetch(APIRequestPrefix + 'movie/now_playing?' + APIKey + '&language=en-US&page=1')
         .then(response => {
             return response.json();
@@ -39,6 +45,9 @@ $(document).ready(function () {
                     $('.carousel-item__genres' + count).html(displayGenres(genresArr, movie.genre_ids));
                     $('.carousel-item__rating' + count).html(movie.vote_average);
                     $('.carousel-item__overview' + count).html(movie.overview);
+                    const youtubeKey = getYoutubeKey(movie.id, APIRequestPrefix, APIKey);
+                    console.log(youtubeKey);
+                    $('.carousel-item__trailer-button' + count).attr('onclick',);
                 }
                 if (count == 3) {
                     return;
@@ -46,7 +55,7 @@ $(document).ready(function () {
             });
         })
         .catch(error => console.log(error));
-});
+}
 
 function displayGenres(genresArr, arr) {
     let strinToReturn = '- ';
@@ -58,4 +67,20 @@ function displayGenres(genresArr, arr) {
         }
     }
     return strinToReturn;
+}
+
+function getYoutubeKey(id, APIRequestPrefix, APIKey) {
+    fetch(APIRequestPrefix + `/movie/${id}/videos?` + APIKey)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            for (video of data.results) {
+                if (video.name.toLowerCase().includes('trailer')) {
+                    console.log(video.key)
+                    return video.key;
+                }
+            }
+        })
+        .catch(error => console.log(error));
 }
