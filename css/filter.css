@@ -28,11 +28,13 @@
 
 }
 
-#movies_container {
-    margin: 5%;
-}
-
 .list-item__selected {
     color: white;
     border-bottom: 3px solid rgb(190, 190, 190) !important;
+}
+
+
+#movies_container {
+    margin: 5%;
+    color:white;
 }
