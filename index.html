@@ -125,21 +125,24 @@
     <!-- Genres and filter navbar -->
     <nav id="filter-bar-nav">
         <ul class="filter-bar__list">
-            <li class="filter-bar__list-item list-item__selected">Popular</li>
-            <li class="filter-bar__list-item">Recently added</li>
-            <li class="filter-bar__list-item">Action</li>
-            <li class="filter-bar__list-item">Drama</li>
-            <li class="filter-bar__list-item">Comedy</li>
-            <li class="filter-bar__list-item">Family</li>
-            <li class="filter-bar__list-item">Horror</li>
-            <li class="filter-bar__list-item">Sci-Fi</li>
-            <li class="filter-bar__list-item">Thriller</li>
+            <li id="popular" class="filter-bar__list-item list-item__selected">Popular</li>
+            <li id="now_playing" class="filter-bar__list-item">NOW PLAYING</li>
+            <li id="action" class="filter-bar__list-item">Action</li>
+            <li id="drama" class="filter-bar__list-item">Drama</li>
+            <li id="comedy" class="filter-bar__list-item">Comedy</li>
+            <li id="family" class="filter-bar__list-item">Family</li>
+            <li id="horror" class="filter-bar__list-item">Horror</li>
+            <li id="sci-fi" class="filter-bar__list-item">Sci-Fi</li>
+            <li id="thriller" class="filter-bar__list-item">Thriller</li>
         </ul>
         <span class="filter-bar__filter">Filter</span>
     </nav>
 
     <!-- Movies filter result container -->
-    <section id="movies_container"></section>
+    <div id="container_wrapper">
+        <section id="popular_movies_container" class="active"></section>
+        <section id="now_playing_movies_container"></section>
+    </div>
 
 
 </body>
