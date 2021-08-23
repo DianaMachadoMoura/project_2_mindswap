@@ -10,6 +10,7 @@ function requestAPI(url, id) {
         .then(results => results.json())
         .then(data => {
             for (let i = 0; i < data.results.length; i++) {
+                console.log(data.results.length, 'lenght request');
                 if (data.results[i].poster_path) {
                     movies.push(data.results[i]);
                     let poster_path = data.results[i].poster_path;
@@ -30,13 +31,14 @@ function getPopularMovies(page) {
     }
 
     let url = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}`;
-    let url2 = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}`;
+    let url2 = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page + 1}`;
 
     let id = document.getElementById('popular_movies_container');
 
     requestAPI(url, id);
+    console.log(page);
     requestAPI(url2, id);
-
+    console.log(page + 1);
 }
 
 function showNowPlayingMovies(page) {
@@ -46,12 +48,12 @@ function showNowPlayingMovies(page) {
     }
 
     let url = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}`;
-    let url2 = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}`;
+    let url2 = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page + 1}`;
 
     let id = document.getElementById('now_playing_movies_container');
 
-    requestAPI(url, id); 
-    requestAPI(url2, id); 
+    requestAPI(url, id);
+    requestAPI(url2, id);
 
 }
 
@@ -62,8 +64,8 @@ function showActionMovies(page) {
         movies = [];
     }
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
- 
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page + 1}` + genreEndpoint;
+
     let id = document.getElementById('action_movies_container');
 
     requestAPI(url, id);
@@ -79,7 +81,7 @@ function showDramaMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page + 1}` + genreEndpoint;
 
     let id = document.getElementById('drama_movies_container');
 
@@ -96,7 +98,7 @@ function showComedyMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page + 1}` + genreEndpoint;
 
     let id = document.getElementById('comedy_movies_container');
 
@@ -113,7 +115,7 @@ function showAnimationMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page + 1}` + genreEndpoint;
 
     let id = document.getElementById('animation_movies_container');
 
@@ -130,7 +132,7 @@ function showHorrorMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page + 1}` + genreEndpoint;
 
     let id = document.getElementById('horror_movies_container');
 
@@ -147,7 +149,7 @@ function showSci_fiMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page + 1}` + genreEndpoint;
 
     let id = document.getElementById('sci-fi_movies_container');
 
@@ -164,7 +166,7 @@ function showThrillerMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page + 1}` + genreEndpoint;
 
     let id = document.getElementById('thriller_movies_container');
 
@@ -204,13 +206,15 @@ function setActiveTab(e) {
     switch (e.currentTarget.id) {
         case 'popular':
             pageNum = 1;
-            movieTabToShow = getPopularMovies;
             getPopularMovies(pageNum);
+            movieTabToShow = getPopularMovies;
+
             break;
         case 'now_playing':
             pageNum = 1;
-            movieTabToShow = showNowPlayingMovies;
             showNowPlayingMovies(pageNum);
+            movieTabToShow = showNowPlayingMovies;
+
             break;
         case 'action':
             pageNum = 1;
@@ -247,19 +251,51 @@ function setActiveTab(e) {
             showThrillerMovies(pageNum);
             movieTabToShow = showThrillerMovies;
             break;
+        case 'searchBtn':
+            console.log('heyyyy', 'search_case')
+            pageNum = 1;
+            let id = document.getElementById('searchBtn_movies_container');
+            let input =  document.getElementById('filter-search__value');
+            id.innerHTML = '';
+            filter(pageNum);
+            movieTabToShow = filter;
+            break;
         default:
             console.log("errooooooooooooo")
     }
 }
 
+
+function myFunction(sticky, navbar) {
+    if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+    } else {
+        navbar.classList.remove("sticky");
+    }
+}
+
 window.onscroll = function () {
-    infiniteScroll();
+    
+    window.onscroll = function () { 
+        myFunction();
+        infiniteScroll(); 
+    };
+    
+    var navbar = document.getElementById("nav-wrapper");
+    var sticky = navbar.offsetTop;
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
 }
 
 window.onload = () => {
-    
+
     movieTabToShow = getPopularMovies;
-    movieTabToShow(); 
+    movieTabToShow(1);
 
     document.querySelectorAll('.filter-bar__list-item').forEach(item => {
         item.addEventListener('click', e => {
@@ -267,5 +303,64 @@ window.onload = () => {
             setActiveTab(e);
         });
     })
+
+    const searchBtn = document.getElementById('searchBtn');
+    searchBtn.addEventListener('click', e => {
+        setActiveContainer(e);
+        setActiveTab(e);
+    })
+
+    const filterBtn = document.getElementById('filter-bar__btn');
+    filterBtn.addEventListener('click', e => {
+        var x = document.getElementById("filter-search-nav");
+        if (x.style.display === "none") {
+            x.style.display = "flex";
+        } else {
+            x.style.display = "none";
+        }
+    })
+
+
+    var max = new Date().getFullYear();
+    min = max - 50;
+    select = document.getElementById('filter-nav__movie-year');
+
+    for (var i = min; i <= max; i++) {
+        var opt = document.createElement('option');
+        opt.value = i;
+        opt.innerHTML = i;
+        select.appendChild(opt);
+    }
+
+    select.value = new Date().getFullYear();
+
+    function filter(page) {
+        let id = document.getElementById('searchBtn_movies_container');
+
+        const discoverEndpoint = 'discover/movie?';
+        const genreEndpoint = document.getElementById('filter-nav__genre').value;
+        const sortByEndpoint = document.getElementById('filter-nav__sort').value;
+        const releaseDate = document.getElementById('filter-nav__movie-year').value;
+        const releaseDateEndPoint = `&primary_release_date.gte=${releaseDate}-01-01&primary_release_date.lte=${releaseDate}-12-31`;
+        const voteAvrEndpoint = document.getElementById('filter-nav__rating').value;
+
+        if (page === 1) {
+            movies = [];
+        }
+
+        let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint;
+
+        requestAPI(url, id);
+    }
+
+    function searchByName(page) {
+        let id = document.getElementById('searchBtn_movies_container');
+        let input =  document.getElementById('filter-search__value');
+        let valueInput = input.value;
+
+        let url = `https://api.themoviedb.org/3/search/movie?${APIKey}&query=${valueInput}`;
+
+        requestAPI(url, id);
+    }
 
 }
