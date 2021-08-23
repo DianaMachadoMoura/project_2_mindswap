@@ -3,16 +3,7 @@ let pageNum = 1;
 let movies = [];
 let movieTabToShow;
 
-const getPopularMovies = (page) => {
-
-    const moviesEndpoint = 'movie/popular?'
-
-    if (page === 1) {
-        movies = [];
-    }
-
-    let url = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}`;
-
+function requestAPI(url, id) {
     let htmlStr = '';
     let imgPath = `https://image.tmdb.org/t/p/w154/`;
     fetch(url)
@@ -28,71 +19,55 @@ const getPopularMovies = (page) => {
                     htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
                 }
             }
-            document.getElementById('popular_movies_container').innerHTML += htmlStr;
+            id.innerHTML += htmlStr;
         })
+}
+
+function getPopularMovies(page) {
+    const moviesEndpoint = 'movie/popular?'
+    if (page === 1) {
+        movies = [];
+    }
+
+    let url = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}`;
+    let url2 = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}`;
+
+    let id = document.getElementById('popular_movies_container');
+
+    requestAPI(url, id);
+    requestAPI(url2, id);
+
 }
 
 function showNowPlayingMovies(page) {
     const moviesEndpoint = 'movie/now_playing?'
-
     if (page === 1) {
         movies = [];
     }
 
     let url = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}`;
+    let url2 = APIRequestPrefix + moviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}`;
 
-    let htmlStr = '';
-    let imgPath = `https://image.tmdb.org/t/p/w154/`;
-    fetch(url)
-        .then(results => results.json())
-        .then(data => {
-            console.log(data);
-            //    document.getElementById('movies_container').innerHTML = "";
-            for (let i = 0; i < data.results.length; i++) {
-                console.log("for");
-                if (data.results[i].poster_path) {
-                    movies.push(data.results[i]);
-                    let poster_path = data.results[i].poster_path;
-                    let title = data.results[i].title;
-                    let date = data.results[i].release_date.split('-')[0];
-                    let rating = data.results[i].vote_average;
-                    htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
-                }
-            }
-            document.getElementById('now_playing_movies_container').innerHTML += htmlStr;
-        })
+    let id = document.getElementById('now_playing_movies_container');
+
+    requestAPI(url, id); 
+    requestAPI(url2, id); 
+
 }
 
 function showActionMovies(page) {
     const discoverEndpoint = 'discover/movie?';
     const genreEndpoint = '&with_genres=28'
-
     if (page === 1) {
         movies = [];
     }
-
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    console.log(url);
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
+ 
+    let id = document.getElementById('action_movies_container');
 
-    let htmlStr = '';
-    let imgPath = `https://image.tmdb.org/t/p/w154/`;
-    fetch(url)
-        .then(results => results.json())
-        .then(data => {
-            console.log(data);
-            for (let i = 0; i < data.results.length; i++) {
-                console.log("for");
-                if (data.results[i].poster_path) {
-                    movies.push(data.results[i]);
-                    let poster_path = data.results[i].poster_path;
-                    let title = data.results[i].title;
-                    let date = data.results[i].release_date.split('-')[0];
-                    let rating = data.results[i].vote_average;
-                    htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
-                }
-            }
-            document.getElementById('action_movies_container').innerHTML += htmlStr;
-        })
+    requestAPI(url, id);
+    requestAPI(url2, id);
 }
 
 function showDramaMovies(page) {
@@ -104,27 +79,12 @@ function showDramaMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    console.log(url);
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
 
-    let htmlStr = '';
-    let imgPath = `https://image.tmdb.org/t/p/w154/`;
-    fetch(url)
-        .then(results => results.json())
-        .then(data => {
-            console.log(data);
-            for (let i = 0; i < data.results.length; i++) {
-                console.log("for");
-                if (data.results[i].poster_path) {
-                    movies.push(data.results[i]);
-                    let poster_path = data.results[i].poster_path;
-                    let title = data.results[i].title;
-                    let date = data.results[i].release_date.split('-')[0];
-                    let rating = data.results[i].vote_average;
-                    htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
-                }
-            }
-            document.getElementById('drama_movies_container').innerHTML += htmlStr;
-        })
+    let id = document.getElementById('drama_movies_container');
+
+    requestAPI(url, id);
+    requestAPI(url2, id);
 }
 
 function showComedyMovies(page) {
@@ -136,27 +96,12 @@ function showComedyMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    console.log(url);
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
 
-    let htmlStr = '';
-    let imgPath = `https://image.tmdb.org/t/p/w154/`;
-    fetch(url)
-        .then(results => results.json())
-        .then(data => {
-            console.log(data);
-            for (let i = 0; i < data.results.length; i++) {
-                console.log("for");
-                if (data.results[i].poster_path) {
-                    movies.push(data.results[i]);
-                    let poster_path = data.results[i].poster_path;
-                    let title = data.results[i].title;
-                    let date = data.results[i].release_date.split('-')[0];
-                    let rating = data.results[i].vote_average;
-                    htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
-                }
-            }
-            document.getElementById('comedy_movies_container').innerHTML += htmlStr;
-        })
+    let id = document.getElementById('comedy_movies_container');
+
+    requestAPI(url, id);
+    requestAPI(url2, id);
 }
 
 function showAnimationMovies(page) {
@@ -168,27 +113,12 @@ function showAnimationMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    console.log(url);
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
 
-    let htmlStr = '';
-    let imgPath = `https://image.tmdb.org/t/p/w154/`;
-    fetch(url)
-        .then(results => results.json())
-        .then(data => {
-            console.log(data);
-            for (let i = 0; i < data.results.length; i++) {
-                console.log("for");
-                if (data.results[i].poster_path) {
-                    movies.push(data.results[i]);
-                    let poster_path = data.results[i].poster_path;
-                    let title = data.results[i].title;
-                    let date = data.results[i].release_date.split('-')[0];
-                    let rating = data.results[i].vote_average;
-                    htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
-                }
-            }
-            document.getElementById('animation_movies_container').innerHTML += htmlStr;
-        })
+    let id = document.getElementById('animation_movies_container');
+
+    requestAPI(url, id);
+    requestAPI(url2, id);
 }
 
 function showHorrorMovies(page) {
@@ -200,27 +130,12 @@ function showHorrorMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    console.log(url);
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
 
-    let htmlStr = '';
-    let imgPath = `https://image.tmdb.org/t/p/w154/`;
-    fetch(url)
-        .then(results => results.json())
-        .then(data => {
-            console.log(data);
-            for (let i = 0; i < data.results.length; i++) {
-                console.log("for");
-                if (data.results[i].poster_path) {
-                    movies.push(data.results[i]);
-                    let poster_path = data.results[i].poster_path;
-                    let title = data.results[i].title;
-                    let date = data.results[i].release_date.split('-')[0];
-                    let rating = data.results[i].vote_average;
-                    htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
-                }
-            }
-            document.getElementById('horror_movies_container').innerHTML += htmlStr;
-        })
+    let id = document.getElementById('horror_movies_container');
+
+    requestAPI(url, id);
+    requestAPI(url2, id);
 }
 
 function showSci_fiMovies(page) {
@@ -232,27 +147,12 @@ function showSci_fiMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    console.log(url);
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
 
-    let htmlStr = '';
-    let imgPath = `https://image.tmdb.org/t/p/w154/`;
-    fetch(url)
-        .then(results => results.json())
-        .then(data => {
-            console.log(data);
-            for (let i = 0; i < data.results.length; i++) {
-                console.log("for");
-                if (data.results[i].poster_path) {
-                    movies.push(data.results[i]);
-                    let poster_path = data.results[i].poster_path;
-                    let title = data.results[i].title;
-                    let date = data.results[i].release_date.split('-')[0];
-                    let rating = data.results[i].vote_average;
-                    htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
-                }
-            }
-            document.getElementById('sci-fi_movies_container').innerHTML += htmlStr;
-        })
+    let id = document.getElementById('sci-fi_movies_container');
+
+    requestAPI(url, id);
+    requestAPI(url2, id);
 }
 
 function showThrillerMovies(page) {
@@ -264,36 +164,21 @@ function showThrillerMovies(page) {
     }
 
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page}` + genreEndpoint;
-    console.log(url);
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${page+1}` + genreEndpoint;
 
-    let htmlStr = '';
-    let imgPath = `https://image.tmdb.org/t/p/w154/`;
-    fetch(url)
-        .then(results => results.json())
-        .then(data => {
-            console.log(data);
-            for (let i = 0; i < data.results.length; i++) {
-                console.log("for");
-                if (data.results[i].poster_path) {
-                    movies.push(data.results[i]);
-                    let poster_path = data.results[i].poster_path;
-                    let title = data.results[i].title;
-                    let date = data.results[i].release_date.split('-')[0];
-                    let rating = data.results[i].vote_average;
-                    htmlStr += `<div style='float:left;margin:40px 20px;height:230px;width:154px;'><img src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
-                }
-            }
-            document.getElementById('thriller_movies_container').innerHTML += htmlStr;
-        })
+    let id = document.getElementById('thriller_movies_container');
+
+    requestAPI(url, id);
+    requestAPI(url2, id);
 }
+
 
 let isScrolled = false;
 const infiniteScroll = () => {
     if (window.scrollY > (document.body.offsetHeight - 100) && !isScrolled) {
         isScrolled = true;
-        pageNum++;
-        movieTabToShow();
-        console.log(movieTabToShow, 'variavel infinite scroll');
+        pageNum += 2;
+        movieTabToShow(pageNum);
         setTimeout(() => {
             isScrolled = false;
         }, 1000);
@@ -316,44 +201,49 @@ function setActiveContainer(e) {
 }
 
 function setActiveTab(e) {
-    console.log(e.currentTarget, 'current target');
-    pageNum = 1;
-    console.log('switchhh');
-    console.log(e.currentTarget);
     switch (e.currentTarget.id) {
         case 'popular':
-            getPopularMovies(pageNum);
+            pageNum = 1;
             movieTabToShow = getPopularMovies;
+            getPopularMovies(pageNum);
             break;
         case 'now_playing':
-            showNowPlayingMovies(pageNum);
+            pageNum = 1;
             movieTabToShow = showNowPlayingMovies;
+            showNowPlayingMovies(pageNum);
             break;
         case 'action':
+            pageNum = 1;
             showActionMovies(pageNum);
             movieTabToShow = showActionMovies;
             break;
         case 'drama':
+            pageNum = 1;
             showDramaMovies(pageNum);
             movieTabToShow = showDramaMovies;
             break;
         case 'comedy':
+            pageNum = 1;
             showComedyMovies(pageNum);
             movieTabToShow = showComedyMovies;
             break;
         case 'animation':
+            pageNum = 1;
             showAnimationMovies(pageNum);
             movieTabToShow = showAnimationMovies;
             break;
         case 'horror':
+            pageNum = 1;
             showHorrorMovies(pageNum);
             movieTabToShow = showHorrorMovies;
             break;
         case 'sci-fi':
+            pageNum = 1;
             showSci_fiMovies(pageNum);
             movieTabToShow = showSci_fiMovies;
             break;
         case 'thriller':
+            pageNum = 1;
             showThrillerMovies(pageNum);
             movieTabToShow = showThrillerMovies;
             break;
@@ -367,14 +257,14 @@ window.onscroll = function () {
 }
 
 window.onload = () => {
+    
     movieTabToShow = getPopularMovies;
-    movieTabToShow();
-    showNowPlayingMovies(pageNum);
+    movieTabToShow(); 
 
     document.querySelectorAll('.filter-bar__list-item').forEach(item => {
         item.addEventListener('click', e => {
-            setActiveTab(e);
             setActiveContainer(e);
+            setActiveTab(e);
         });
     })
 
