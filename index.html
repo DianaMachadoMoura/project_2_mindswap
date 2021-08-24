@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/filter.css">
-
+    <script src="https://kit.fontawesome.com/52e29f6891.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -137,11 +137,16 @@
                 <li id="thriller" class="filter-bar__list-item">Thriller</li>
                 <li class="filter-bar__list-item"></li>
             </ul>
+            <div>
+                <input id="searchInput" class="filter-bar__value" type="text" placeholder="Search by movie name..">
+                <i id="filter-bar__icon" class="fas fa-search"></i>
+            </div>
+            
             <span id="filter-bar__btn" class="filter-bar__filter">Filter</span>
         </div>
         <div id='filter-search-nav' class="filter-search-nav">
             <ul class="filter-search-nav__list">
-                <li class="filter-bar__list"><input id="filter-search__value" type="text" placeholder="Search by movie name.."></li>
+                
                 <li><select name="filter-nav__movie_year" id="filter-nav__movie-year"></select></li>
                 <li><select name="filter-nav__genre" id="filter-nav__genre">
                         <option value="" disabled selected hidden>Genre</option>
@@ -191,6 +196,7 @@
         <section id="sci-fi_movies_container"></section>
         <section id="thriller_movies_container"></section>
         <section id="searchBtn_movies_container"></section>
+        <section id="searchInput_movies_container"></section>
     </div>
 
 

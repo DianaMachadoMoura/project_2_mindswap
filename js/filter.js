@@ -174,6 +174,25 @@ function showThrillerMovies(page) {
     requestAPI(url2, id);
 }
 
+function filter(page) {
+    let id = document.getElementById('searchBtn_movies_container');
+
+    const discoverEndpoint = 'discover/movie?';
+    const genreEndpoint = document.getElementById('filter-nav__genre').value;
+    const sortByEndpoint = document.getElementById('filter-nav__sort').value;
+    const releaseDate = document.getElementById('filter-nav__movie-year').value;
+    const releaseDateEndPoint = `&primary_release_date.gte=${releaseDate}-01-01&primary_release_date.lte=${releaseDate}-12-31`;
+    const voteAvrEndpoint = document.getElementById('filter-nav__rating').value;
+
+    if (page === 1) {
+        movies = [];
+    }
+
+    let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint;
+
+    requestAPI(url, id);
+}
+
 
 let isScrolled = false;
 const infiniteScroll = () => {
@@ -255,7 +274,6 @@ function setActiveTab(e) {
             console.log('heyyyy', 'search_case')
             pageNum = 1;
             let id = document.getElementById('searchBtn_movies_container');
-            let input =  document.getElementById('filter-search__value');
             id.innerHTML = '';
             filter(pageNum);
             movieTabToShow = filter;
@@ -275,12 +293,12 @@ function myFunction(sticky, navbar) {
 }
 
 window.onscroll = function () {
-    
-    window.onscroll = function () { 
+
+    window.onscroll = function () {
         myFunction();
-        infiniteScroll(); 
+        infiniteScroll();
     };
-    
+
     var navbar = document.getElementById("nav-wrapper");
     var sticky = navbar.offsetTop;
     function myFunction() {
@@ -334,33 +352,39 @@ window.onload = () => {
 
     select.value = new Date().getFullYear();
 
-    function filter(page) {
-        let id = document.getElementById('searchBtn_movies_container');
+    let searchInput = document.querySelector(".filter-bar__value");
 
-        const discoverEndpoint = 'discover/movie?';
-        const genreEndpoint = document.getElementById('filter-nav__genre').value;
-        const sortByEndpoint = document.getElementById('filter-nav__sort').value;
-        const releaseDate = document.getElementById('filter-nav__movie-year').value;
-        const releaseDateEndPoint = `&primary_release_date.gte=${releaseDate}-01-01&primary_release_date.lte=${releaseDate}-12-31`;
-        const voteAvrEndpoint = document.getElementById('filter-nav__rating').value;
-
-        if (page === 1) {
-            movies = [];
+    searchInput.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            setActiveContainer(event);
+            searchByName(searchInput.value, 1);
         }
+    });
 
-        let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint;
+    function searchByName(input, page) {
 
-        requestAPI(url, id);
-    }
+        let id = document.getElementById('searchInput_movies_container');
 
-    function searchByName(page) {
-        let id = document.getElementById('searchBtn_movies_container');
-        let input =  document.getElementById('filter-search__value');
-        let valueInput = input.value;
+        id.innerHTML = '';
+
+        let valueInput = input;
 
         let url = `https://api.themoviedb.org/3/search/movie?${APIKey}&query=${valueInput}`;
 
         requestAPI(url, id);
     }
+
+    let searchIcon = document.querySelector('#filter-bar__icon');
+    searchIcon.addEventListener('click', e => {
+
+        if (searchInput.classList.contains('show-search-input')) {
+            searchInput.classList.remove('show-search-input');
+        } else {
+            searchInput.classList.add('show-search-input');
+        }
+
+    });
+
+
 
 }
