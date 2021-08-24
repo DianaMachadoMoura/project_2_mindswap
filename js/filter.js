@@ -1,11 +1,11 @@
-
+const imgPath = `https://image.tmdb.org/t/p/w154`;
 let pageNum = 1;
 let movies = [];
 let movieTabToShow;
 
 function requestAPI(url, id) {
     let htmlStr = '';
-    let imgPath = `https://image.tmdb.org/t/p/w154/`;
+    
     fetch(url)
         .then(results => results.json())
         .then(data => {
