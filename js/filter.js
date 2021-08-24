@@ -5,7 +5,7 @@ let movieTabToShow;
 
 function requestAPI(url, id) {
     let htmlStr = '';
-    
+
     fetch(url)
         .then(results => results.json())
         .then(data => {
@@ -191,6 +191,22 @@ function filter(page) {
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint;
 
     requestAPI(url, id);
+
+    resetFilter();
+}
+
+function resetFilter() {
+    var dropDownYear = document.getElementById("filter-nav__movie-year");
+    dropDownYear.selectedIndex = 0;
+
+    var dropDownGenre = document.getElementById("filter-nav__genre");
+    dropDownGenre.selectedIndex = 0;
+
+    var dropDownRating = document.getElementById("filter-nav__rating");
+    dropDownRating.selectedIndex = 0;
+
+    var dropDownSort = document.getElementById("filter-nav__sort");
+    dropDownSort.selectedIndex = 0;
 }
 
 
@@ -220,6 +236,7 @@ function setActiveContainer(e) {
     container.classList.remove("inactive");
     container.classList.add("active");
 }
+
 
 function setActiveTab(e) {
     switch (e.currentTarget.id) {
@@ -319,6 +336,15 @@ window.onload = () => {
         item.addEventListener('click', e => {
             setActiveContainer(e);
             setActiveTab(e);
+
+            let wrapper = document.querySelector(".filter-bar__list");
+            let elements = wrapper.children;
+
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].classList.remove('list-item__selected');
+            }
+
+            e.currentTarget.classList.add('list-item__selected');
         });
     })
 
@@ -343,14 +369,14 @@ window.onload = () => {
     min = max - 50;
     select = document.getElementById('filter-nav__movie-year');
 
-    for (var i = min; i <= max; i++) {
+    for (var i = max; i >= min; i--) {
         var opt = document.createElement('option');
         opt.value = i;
         opt.innerHTML = i;
         select.appendChild(opt);
     }
 
-    select.value = new Date().getFullYear();
+    // select.value = new Date().getFullYear();
 
     let searchInput = document.querySelector(".filter-bar__value");
 

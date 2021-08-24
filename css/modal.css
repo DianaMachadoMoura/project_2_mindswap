@@ -15,18 +15,19 @@
   
   /* Modal Content */
   .modal-content {
-    background-color: #fefefe;
+    background-color: black;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    border: 1px solid #ffd000;
+    width: 50%;
+    height: auto;
   }
   
   /* The Close Button */
   .close {
-    color: #aaaaaa;
+    color: white;
     float: right;
-    font-size: 28px;
+    font-size: 35px;
     font-weight: bold;
   }
   
@@ -35,4 +36,61 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .modal-content__poster-wrapper img {
+    width: 250px;
+    /* height: 100%; */
+  }
+
+  .modal-content__details-wrapper {
+    display: flex;
+    margin: 5px;
+  }
+
+  .modal-content__description-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 20px;
+  }
+
+  .modal-content__title {
+    font-size: 1.8em;
+    color: #ffd000;
+  }
+
+  .modal-content__year {
+    margin: 5px 0;
+    color: #ffd000;
+  }
+
+  .modal-content__genres {
+    margin-top: 10px;
+    color: white;
+  }
+
+  .modal-content__rating-wrapper {
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+
+  .modal-content__rating {
+    margin: 10px 10px;
+  }
+
+  .modal-content__overview {
+    color: white;
+  }
+
+  .modal-content__trailer-button {
+    margin: 10px 0;
+    color: #be1313;
+    border: 2px solid #be1313;
+    background-color: transparent;
+    width: 150px;
+    height: 30px;
+    border-radius: 10%;
+    font-size: 1.2em;  
   }

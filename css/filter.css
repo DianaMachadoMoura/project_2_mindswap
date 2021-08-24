@@ -19,18 +19,31 @@
     margin-left:5px;
     border-bottom: 3px solid transparent;
     text-transform: uppercase;
-    transition: border-bottom 2.5s;
+    transition: border-bottom 1.5s;
 }
 
 .filter-bar__list > li:hover {
     color: white;
     border-bottom: 3px solid rgb(190, 190, 190);
-    transition:  2s;
+    transition:  1.5s;
 
 }
 
 .filter-bar__value {
     visibility: hidden;
+    border-radius: 5px;
+    border: 2px solid rgb(145, 145, 145);
+    background-color: transparent;
+}
+
+.filter-bar__value::placeholder {
+    color: rgb(145, 145, 145);
+    font-weight: bold;
+}
+
+.filter-bar__value:focus::placeholder {
+    color: transparent;
+    border: none;
 }
 
 .show-search-input {
@@ -71,28 +84,45 @@ option[default] {
 
 .filter-search-nav {
     display: none;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    
-    
+    color: rgb(145 145 145);
+    width: 100%;
+    background-color: #2f2f2f;
 }
 
 .filter-search-nav__list {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-right: 10px;
+    padding: 15px;
 }
 
 .filter-search-nav__list > li {
-    margin-right: 10px;
-    height: 24,67px;
+    margin-right: 15px;
 }
 
+#filter-nav__movie-year, #filter-nav__genre, #filter-nav__rating, #filter-nav__sort {
+    width: 100px;   
+    height: 29px;
+    border-radius: 5px;
+    background-color: rgb(145, 145,145);
+    border: 2px solid rgb(145, 145,145);
+    color:black;
+    font-weight: bold;
+}
+
+
 .filter-nav__search-btn {
-    height: 24.67px;
-    width: 68px;
-    background-color: white;;
+    height: 29px;
+    width: 80px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid #ffd000;
+    color: #ffd000;
+    margin-right: 15px;
+}
+
+.filter-nav__search-btn:hover {
+        
 }
 
 /* STICKY NAVBAR */
