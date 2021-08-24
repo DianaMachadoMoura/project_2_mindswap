@@ -138,7 +138,7 @@
                 <li class="filter-bar__list-item"></li>
             </ul>
             <div>
-                <input id="searchInput" class="filter-bar__value" type="text" placeholder="Search by movie name..">
+                <input id="searchInput" class="filter-bar__value" type="text" placeholder=" Search movie...">
                 <i id="filter-bar__icon" class="fas fa-search"></i>
             </div>
 
@@ -147,7 +147,8 @@
         <div id='filter-search-nav' class="filter-search-nav">
             <ul class="filter-search-nav__list">
 
-                <li><select name="filter-nav__movie_year" id="filter-nav__movie-year"></select></li>
+                <li><select name="filter-nav__movie_year" id="filter-nav__movie-year">
+                    </select></li>
                 <li><select name="filter-nav__genre" id="filter-nav__genre">
                         <option value="" disabled selected hidden>Genre</option>
                         <option id="action-genre" value="&with_genres=28">Action</option>
@@ -209,12 +210,18 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="modal-content__details-wrapper">
                 <!-- poster, title, year, genres, rating, overview, youtube -->
-                <img class="modal-content__poster" alt="">
+                <div class="modal-content__poster-wrapper"><img class="modal-content__poster" alt=""></div>
                 <div class="modal-content__description-wrapper">
                     <h2 class="modal-content__title"></h2>
                     <p class="modal-content__year"></p>
                     <p class="modal-content__genres"></p>
-                    <p class="modal-content__rating"></p>
+                    <div class="modal-content__rating-wrapper">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
+                            alt="" class="carousel-item__icon">
+                        <p class="modal-content__rating"></p>
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.tubefilter.com%2Fwp-content%2Fuploads%2F2009%2F03%2Fimdb_logo.png&f=1&nofb=1"
+                            alt="" class="carousel-item__icon">
+                    </div>
                     <p class="modal-content__overview"></p>
                     <a href="" class="modal-content__trailer">
                         <button class="modal-content__trailer-button">▶ Watch Trailer</button>
