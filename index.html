@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/filter.css">
     <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/video.css">
+
     <script src="https://kit.fontawesome.com/52e29f6891.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -25,6 +27,7 @@
     <script src='js/carousel.js'></script>
     <script src='js/filter.js'></script>
     <script src='js/modal.js'></script>
+    <script src='js/video.js'></script>
 
     <title>Document</title>
 </head>
@@ -217,13 +220,22 @@
                     <p class="modal-content__rating"></p>
                     <p class="modal-content__overview"></p>
                     <a href="" class="modal-content__trailer">
-                        <button class="modal-content__trailer-button">▶ Watch Trailer</button>
+                        <button class="modal-content__trailer-button trailerLink" href="#trailer-content">▶ Watch Trailer</button>
                     </a>
                 </div>
             </div>
         </div>
-
     </div>
+
+
+    <!--trailer form popup-->
+    <div class="trailer-wrapper" id="trailer-content">
+        <div class="trailer-content">
+            <iframe id="video-frame" width="420" height="345">
+            </iframe>
+        </div>
+    </div>
+    <!--end of trailer form popup-->
 
 
 </body>

@@ -55,11 +55,10 @@ async function showDetails(id) {
     let movieOverview = document.querySelector('.modal-content__overview');
     movieOverview.innerHTML = movieToShow.overview;
 
-    let movieTrailerBtn = document.querySelector('.modal-content__trailer-button');
+    let movieTrailerBtn = document.querySelector('#video-frame');
     let videoKey = await getYoutubeKey(movieToShow.id);
-    
-    movieTrailerBtn.setAttribute('onclick',`window.open('https://www.youtube.com/watch?v=${videoKey}?start=5&autoplay=1', '_blank')`);
 
+    movieTrailerBtn.setAttribute('src', `https://www.youtube.com/embed/${videoKey}`);
 
 }
 
