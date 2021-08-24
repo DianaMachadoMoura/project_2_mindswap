@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/filter.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/moviecards.css">
     <script src="https://kit.fontawesome.com/52e29f6891.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -23,6 +25,7 @@
         crossorigin="anonymous"></script>
     <script src='js/carousel.js'></script>
     <script src='js/filter.js'></script>
+    <script src='js/modal.js'></script>
 
     <title>Document</title>
 </head>
@@ -141,12 +144,12 @@
                 <input id="searchInput" class="filter-bar__value" type="text" placeholder="Search by movie name..">
                 <i id="filter-bar__icon" class="fas fa-search"></i>
             </div>
-            
+
             <span id="filter-bar__btn" class="filter-bar__filter">Filter</span>
         </div>
         <div id='filter-search-nav' class="filter-search-nav">
             <ul class="filter-search-nav__list">
-                
+
                 <li><select name="filter-nav__movie_year" id="filter-nav__movie-year"></select></li>
                 <li><select name="filter-nav__genre" id="filter-nav__genre">
                         <option value="" disabled selected hidden>Genre</option>
@@ -182,7 +185,7 @@
             <button class="filter-nav__search-btn" id="searchBtn">Search</button>
         </div>
     </nav>
-    
+
 
     <!-- Movies filter result container -->
     <div id="container_wrapper">
@@ -197,6 +200,21 @@
         <section id="thriller_movies_container"></section>
         <section id="searchBtn_movies_container"></section>
         <section id="searchInput_movies_container"></section>
+    </div>
+
+
+    <!-- MODAL -->
+    <!-- The Modal -->
+    <div id="modal-wrapper" class="modal-wrapper">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-content__details-wrapper">
+                
+            </div>   
+        </div>
+
     </div>
 
 
