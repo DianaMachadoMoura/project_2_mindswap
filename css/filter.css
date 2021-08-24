@@ -29,6 +29,14 @@
 
 }
 
+.filter-bar__value {
+    visibility: hidden;
+}
+
+.show-search-input {
+    visibility: visible;
+}
+
 .list-item__selected {
     color: white;
     border-bottom: 3px solid rgb(190, 190, 190) !important;

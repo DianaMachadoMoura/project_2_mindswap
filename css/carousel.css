@@ -31,7 +31,7 @@
   text-align: left;
 }
 
-.carousel-item__description > p, div {
+.carousel-item__description > p, .carousel-item__description > div {
   margin-top: 5px;
 }
 
