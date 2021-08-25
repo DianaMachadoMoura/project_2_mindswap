@@ -1,17 +1,16 @@
 /* CAROUSEL */
 .carousel, .carousel-container, .carousel-slide, .carousel-item, .carousel-inner {
-    width: 100%;
-    height: 100%;
-    background-position:center center;
+  width: 100%;
+  height: 100%;
+  background-position:center center;
 }
 
 .carousel-item {
-    background-size: cover;
-    height: 100vh;
+  background-size: cover;
+  height: 100vh;
 }
 
 .carousel-item__color {
-  
   background: linear-gradient(180deg, rgba(22,22,22,0.2) 0%, rgb(22,22,22,0.96) 50%, rgb(22,22,22,0.99) 75%, rgba(22,22,22,1) 100%);
   width: 100%;
   height: 100%;
@@ -132,7 +131,6 @@
     width:100%;
   }
   
-
 }
 
 @media only screen and (max-width: 600px) {
