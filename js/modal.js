@@ -7,7 +7,7 @@ window.onclick = function (event) {
     }
 }
 
-
+//funvtion to show movies details in modal
 async function showDetails(id) {
 
     var modal = document.getElementById("modal-wrapper");
@@ -48,6 +48,7 @@ async function showDetails(id) {
 
 }
 
+//function to close modal on "X" button
 function closeModal() {
 
     var modal = document.getElementById("modal-wrapper");
