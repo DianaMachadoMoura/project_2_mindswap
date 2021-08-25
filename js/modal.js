@@ -20,6 +20,8 @@ async function showDetails(id) {
         }
     }
 
+    let backgroundElement = document.querySelector('.modal-content__background');
+    backgroundElement.setAttribute('style', `background-image: url('${imgPath + movieToShow.backdrop_path}')`);
 
     let posterElement = document.querySelector('.modal-content__poster');
     posterElement.src = imgPath + movieToShow.poster_path;
@@ -28,8 +30,7 @@ async function showDetails(id) {
     title.innerHTML = movieToShow.title;
 
     let releaseYear = document.querySelector('.modal-content__year');
-    releaseYear.innerHTML = movieToShow.release_date.split('-')[0]
-        ;
+    releaseYear.innerHTML = movieToShow.release_date.split('-')[0];
 
     let genres = document.querySelector('.modal-content__genres');
     genres.innerHTML = displayGenres(movieToShow.genre_ids);

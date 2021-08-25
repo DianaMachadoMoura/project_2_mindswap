@@ -374,6 +374,10 @@ async function randomize(page) {
         let posterElement = document.querySelector('.modal-content__poster');
         posterElement.src = imgPath + randomMovieToShow.poster_path;
 
+        let backgroundElement = document.querySelector('.modal-content__background');
+        backgroundElement.setAttribute('style', `background-image: url('${imgPath + randomMovieToShow.backdrop_path}')`);
+
+
         let title = document.querySelector('.modal-content__title');
         title.innerHTML = randomMovieToShow.title;
 
@@ -393,6 +397,9 @@ async function randomize(page) {
 
         movieTrailerBtn.setAttribute('onclick', `window.open('https://www.youtube.com/watch?v=${videoKey}?start=5&autoplay=1', '_blank')`);
     })();
+
+    resetFilter();
+
 }
 
 
@@ -431,10 +438,15 @@ window.onload = () => {
     const filterBtn = document.getElementById('filter-bar__btn');
     filterBtn.addEventListener('click', e => {
         var x = document.getElementById("filter-search-nav");
+        let y = document.getElementById('filter-bar__btn');
         if (x.style.display === "none") {
             x.style.display = "flex";
+            y.innerText = '❌';
+            y.style.fontSize = '16px';
         } else {
             x.style.display = "none";
+            y.innerText = 'Filter';
+            y.style.fontSize = '16px';
         }
     })
 

@@ -126,6 +126,21 @@ option[default] {
         
 }
 
+.filter-nav__random-btn {
+    height: 29px;
+    width: auto;
+    background-color: #be1313;
+    border-radius: 5px;
+    border: 1px solid #be1313;
+    color: white;;
+    margin-right: 15px;
+}
+
+.filter-nav__random-btn:hover {
+    
+}
+
+
 /* STICKY NAVBAR */
 
 #nav-wrapper {

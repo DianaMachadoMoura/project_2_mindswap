@@ -10,15 +10,19 @@
 }
 
 .carousel-item__color {
-    background: #050610a1;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+  
+  background: linear-gradient(180deg, rgba(22,22,22,0.2) 0%, rgb(22,22,22,0.96) 50%, rgb(22,22,22,0.99) 75%, rgba(22,22,22,1) 100%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 .carousel-caption {
   justify-content: center;
   align-items: center;
+  top: 60%;
+  transform: translateY(-60%);
+  bottom: initial;
 }
 
 .carousel-caption > img {
@@ -32,7 +36,7 @@
 }
 
 .carousel-item__description > p, .carousel-item__description > div {
-  margin-top: 5px;
+  margin: 5px 0;
 }
 
 .carousel-item__title1, .carousel-item__title2, .carousel-item__title3 {
@@ -40,29 +44,30 @@
 }
 
 .carousel-item__date1, .carousel-item__date2, .carousel-item__date3 {
-  font-size: 1em;
+  font-size: 0.95em;
   margin: 10px 0;
 }
 
+.carousel-item__genres1, .carousel-item__genres2, .carousel-item__genres3 {
+  font-size: 0.8em;
+}
+
 .carousel-item__overview1, .carousel-item__overview2, .carousel-item__overview3 {
-  font-size: 1em;
+  font-size: 0.90em;
   line-height: 1.2;
 }
 
 .rating_wrapper {
   display: flex;
   align-items: center;
-  margin: 10px 0;
 }
 
 .carousel-item__icon {
-  height: 25px;
-  width: auto;
+  width: 15px;
 }
 
 .carousel-item__rating1, .carousel-item__rating2, .carousel-item__rating3 {
-  margin: 0 10px;
-  font-size: 1em;
+  font-size: 0.75em;
 }
 
 .carousel-item__trailer-wrapper {
@@ -74,26 +79,38 @@
 .carousel-item__in-theaters {
   background-color: #be1313;
   color: white;
-  font-size: 1em;
- 
-
+  font-size: 0.9em;
 }
-
 
 .carousel-item__trailer-button1, .carousel-item__trailer-button2, .carousel-item__trailer-button3 {
-  width: 150px;
-  height: 30px;
+  width: 10vw;
+  height: auto;
+  padding: 5px;
   background-color: transparent;
-  color: #be1313;
-  font-size: 1.2em;
-  border: 2px solid #be1313;
+  color: #ffd000;
+  font-size: 0.8vw;
+  border: 2px solid #ffd000;
   border-radius: 10%;
   margin-top: 10px;
+  text-transform: uppercase;
 }
+
 
 .carousel-item__trailer-button1:hover, .carousel-item__trailer-button2:hover, .carousel-item__trailer-button3:hover {
   background-color: #be1313;
+  border: 2px solid #be1313;
   color: white;
   transition:  1s;
   opacity: 80%;
+}
+
+.carousel-item__trailer-theater {
+  height: auto;
+  padding: 5px;
+  background-color: transparent;
+  color: #ff3e3e;
+  font-size: 1vw;
+  text-transform: uppercase;
+  border-radius: 10%;
+  margin-top: 10px;
 }
