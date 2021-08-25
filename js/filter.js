@@ -327,6 +327,72 @@ window.onscroll = function () {
     }
 }
 
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+async function randomize(page) {
+    let id = document.getElementById('searchBtn_movies_container');
+
+    const discoverEndpoint = 'discover/movie?';
+    const genreEndpoint = document.getElementById('filter-nav__genre').value;
+    const sortByEndpoint = document.getElementById('filter-nav__sort').value;
+    const releaseDate = document.getElementById('filter-nav__movie-year').value;
+    const releaseDateEndPoint = `&primary_release_date.gte=${releaseDate}-01-01&primary_release_date.lte=${releaseDate}-12-31`;
+    const voteAvrEndpoint = document.getElementById('filter-nav__rating').value;
+
+    if (page === 1) {
+        movies = [];
+    }
+
+    let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint;
+
+    const response = await fetch(url)
+    let data = await response.json();
+    let randomId = Math.floor(Math.random() * (data.results.length - 0 + 1)) + 0;
+    let videoKey = await getYoutubeKey(data.results[randomId].id);
+
+    let showRandomMovie = await (() => {
+
+        let randomMovieToShow = data.results[randomId];
+
+        var modal = document.getElementById("modal-wrapper");
+
+        modal.style.display = "block";
+
+        let posterElement = document.querySelector('.modal-content__poster');
+        posterElement.src = imgPath + randomMovieToShow.poster_path;
+
+        let title = document.querySelector('.modal-content__title');
+        title.innerHTML = randomMovieToShow.title;
+
+        let releaseYear = document.querySelector('.modal-content__year');
+        releaseYear.innerHTML = randomMovieToShow.release_date.split('-')[0];
+
+        let genres = document.querySelector('.modal-content__genres');
+        genres.innerHTML = displayGenres(randomMovieToShow.genre_ids);
+
+        let movieRating = document.querySelector('.modal-content__rating');
+        movieRating.innerHTML = randomMovieToShow.vote_average;
+
+        let movieOverview = document.querySelector('.modal-content__overview');
+        movieOverview.innerHTML = randomMovieToShow.overview;
+
+        let movieTrailerBtn = document.querySelector('.modal-content__trailer-button');
+
+        movieTrailerBtn.setAttribute('onclick', `window.open('https://www.youtube.com/watch?v=${videoKey}?start=5&autoplay=1', '_blank')`);
+    })();
+}
+    
+
+
+
+
+
+
 window.onload = () => {
 
     movieTabToShow = getPopularMovies;
