@@ -1,7 +1,8 @@
 /* CAROUSEL */
-.carousel-slide {
-    width: auto;
+.carousel, .carousel-container, .carousel-slide, .carousel-item, .carousel-inner {
+    width: 100%;
     height: 100%;
+    background-position:center center;
 }
 
 .carousel-item {
@@ -26,7 +27,7 @@
 }
 
 .carousel-caption > img {
-  max-width: 20%;
+  max-width: 25%;
 }
 
 .carousel-item__description {
@@ -40,7 +41,7 @@
 }
 
 .carousel-item__title1, .carousel-item__title2, .carousel-item__title3 {
-  font-size: 30px;
+  font-size: 2rem;
 }
 
 .carousel-item__date1, .carousel-item__date2, .carousel-item__date3 {
@@ -63,11 +64,11 @@
 }
 
 .carousel-item__icon {
-  width: 15px;
+  width: 4%;
 }
 
 .carousel-item__rating1, .carousel-item__rating2, .carousel-item__rating3 {
-  font-size: 0.75em;
+  font-size: 0.7em;
 }
 
 .carousel-item__trailer-wrapper {
@@ -83,12 +84,12 @@
 }
 
 .carousel-item__trailer-button1, .carousel-item__trailer-button2, .carousel-item__trailer-button3 {
-  width: 10vw;
+  width: 35%;
   height: auto;
   padding: 5px;
   background-color: transparent;
   color: #ffd000;
-  font-size: 0.8vw;
+  font-size: 0.7rem;
   border: 2px solid #ffd000;
   border-radius: 10%;
   margin-top: 10px;
@@ -105,12 +106,75 @@
 }
 
 .carousel-item__trailer-theater {
-  height: auto;
   padding: 5px;
   background-color: transparent;
   color: #ff3e3e;
-  font-size: 1vw;
+  font-size: 0.7rem;
   text-transform: uppercase;
   border-radius: 10%;
   margin-top: 10px;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 1024px) {
+
+  /* CAROUSEL */
+  .carousel-item {
+    height: 50vh;
+  }
+
+  .carousel-caption > img {
+    max-width: 30%;
+  }
+
+  .carousel-item__description {
+    width:100%;
+  }
+  
+
+}
+
+@media only screen and (max-width: 600px) {
+
+  /* CAROUSEL */
+
+  .carousel-item {
+    height: 100vh;
+  }
+
+  .carousel-caption {
+    flex-direction: column;
+  }
+
+  .carousel-caption > img {
+    max-width: 70%;
+  }
+
+  .carousel-item__description {
+    width: 100%;
+    padding: 5% 15%;
+  }
+
+  .carousel-item__title1, .carousel-item__title2, .carousel-item__title3 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-item__description > p {
+    font-size: 0.75rem;
+  }
+
+  .carousel-item__rating1, .carousel-item__rating2, .carousel-item__rating3 {
+    font-size: 0.6em;
+  }
+
+  .carousel-item__trailer-button1, .carousel-item__trailer-button2, .carousel-item__trailer-button3 {
+    max-width: 70%;
+    font-size: 0.55rem;
+  }
+  
+  .carousel-item__trailer-theater {
+    font-size: 0.55rem;
+  }
+
 }

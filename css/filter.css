@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-evenly;
     width: 70%;
+    font-size: 0.9rem;
 }
 
 .filter-bar__list > li {
