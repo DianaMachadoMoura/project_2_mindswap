@@ -10,6 +10,7 @@ let genresArr;
 const APIKey = 'api_key=948abbb99b89ebe76dbe27b039bf28a8';
 const APIRequestPrefix = 'https://api.themoviedb.org/3/';
 
+//function to set all the information needed on carousel
 async function setCarousel() {
 
     await getGenres();
@@ -17,6 +18,7 @@ async function setCarousel() {
     await getNowPlayingMovies();
 }
 
+//function to make the request to api to get movies genres
 function getGenres() {
     const genresEndpoint = '/genre/movie/list?';
     return fetch(APIRequestPrefix + genresEndpoint + APIKey + '&language=en-US')
@@ -29,6 +31,7 @@ function getGenres() {
         .catch(error => console.log(error));
 }
 
+//function to make the request to api to get now playing movies
 async function getNowPlayingMovies() {
 
     const response = await fetch(APIRequestPrefix + 'movie/now_playing?' + APIKey + '&language=en-US&page=1');
@@ -38,6 +41,7 @@ async function getNowPlayingMovies() {
 
 }
 
+//function to display genres
 function displayGenres(arr) {
 
     let strinToReturn = '- ';
@@ -51,6 +55,7 @@ function displayGenres(arr) {
     return strinToReturn;
 }
 
+//function to put the all the information needed on carousel
 async function populateCarousel(data) {
 
     let count = 0;
@@ -74,6 +79,7 @@ async function populateCarousel(data) {
     }
 }
 
+//function to get movie youtube key from api
 async function getYoutubeKey(id) {
 
     const response = await fetch(APIRequestPrefix + `/movie/${id}/videos?` + APIKey)
@@ -83,6 +89,7 @@ async function getYoutubeKey(id) {
     return videoKey;
 }
 
+//function to get movie key to trailer
 function getVideo(videoData) {
     for (video of videoData) {
         if (video.name.toLowerCase().includes('trailer')) {

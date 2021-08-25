@@ -3,6 +3,7 @@ let pageNum = 1;
 let movies = [];
 let movieTabToShow;
 
+//generic function to make api requests
 function requestAPI(url, id) {
     let htmlStr = '';
 
@@ -24,6 +25,7 @@ function requestAPI(url, id) {
         })
 }
 
+//function to make api request to get popular movies 
 function getPopularMovies(page) {
     const moviesEndpoint = 'movie/popular?'
     if (page === 1) {
@@ -41,6 +43,7 @@ function getPopularMovies(page) {
     console.log(page + 1);
 }
 
+//function to make api request to get now playing movies 
 function showNowPlayingMovies(page) {
     const moviesEndpoint = 'movie/now_playing?'
     if (page === 1) {
@@ -57,6 +60,7 @@ function showNowPlayingMovies(page) {
 
 }
 
+//function to make api request to get action movies 
 function showActionMovies(page) {
     const discoverEndpoint = 'discover/movie?';
     const genreEndpoint = '&with_genres=28'
@@ -72,6 +76,7 @@ function showActionMovies(page) {
     requestAPI(url2, id);
 }
 
+//function to make api request to get drama movies 
 function showDramaMovies(page) {
     const discoverEndpoint = 'discover/movie?';
     const genreEndpoint = '&with_genres=18'
@@ -89,6 +94,7 @@ function showDramaMovies(page) {
     requestAPI(url2, id);
 }
 
+//function to make api request to get comedy movies 
 function showComedyMovies(page) {
     const discoverEndpoint = 'discover/movie?';
     const genreEndpoint = '&with_genres=35'
@@ -106,6 +112,7 @@ function showComedyMovies(page) {
     requestAPI(url2, id);
 }
 
+//function to make api request to get animation movies 
 function showAnimationMovies(page) {
     const discoverEndpoint = 'discover/movie?';
     const genreEndpoint = '&with_genres=16'
@@ -123,6 +130,7 @@ function showAnimationMovies(page) {
     requestAPI(url2, id);
 }
 
+//function to make api request to get horror movies 
 function showHorrorMovies(page) {
     const discoverEndpoint = 'discover/movie?';
     const genreEndpoint = '&with_genres=27'
@@ -140,6 +148,7 @@ function showHorrorMovies(page) {
     requestAPI(url2, id);
 }
 
+//function to make api request to get sci-fi movies 
 function showSci_fiMovies(page) {
     const discoverEndpoint = 'discover/movie?';
     const genreEndpoint = '&with_genres=878'
@@ -157,6 +166,7 @@ function showSci_fiMovies(page) {
     requestAPI(url2, id);
 }
 
+//function to make api request to get thriller movies 
 function showThrillerMovies(page) {
     const discoverEndpoint = 'discover/movie?';
     const genreEndpoint = '&with_genres=53'
@@ -174,6 +184,7 @@ function showThrillerMovies(page) {
     requestAPI(url2, id);
 }
 
+//function to user can do a search with the parameters that he chose
 function filter(page) {
     let id = document.getElementById('searchBtn_movies_container');
 
@@ -195,6 +206,7 @@ function filter(page) {
     resetFilter();
 }
 
+//function to reset filter parameters
 function resetFilter() {
     var dropDownYear = document.getElementById("filter-nav__movie-year");
     dropDownYear.selectedIndex = 0;
@@ -209,7 +221,7 @@ function resetFilter() {
     dropDownSort.selectedIndex = 0;
 }
 
-
+//function to do infinite scroll on window
 let isScrolled = false;
 const infiniteScroll = () => {
     if (window.scrollY > (document.body.offsetHeight - 100) && !isScrolled) {
@@ -222,6 +234,7 @@ const infiniteScroll = () => {
     }
 }
 
+//function to set active container on tabs bar
 function setActiveContainer(e) {
     let wrapper = document.getElementById("container_wrapper");
     let elements = wrapper.children;
@@ -237,7 +250,7 @@ function setActiveContainer(e) {
     container.classList.add("active");
 }
 
-
+//function to set active tab bar
 function setActiveTab(e) {
     switch (e.currentTarget.id) {
         case 'popular':
@@ -300,7 +313,7 @@ function setActiveTab(e) {
     }
 }
 
-
+//functiion to make the navbar sticky
 function myFunction(sticky, navbar) {
     if (window.pageYOffset >= sticky) {
         navbar.classList.add("sticky")
@@ -309,6 +322,7 @@ function myFunction(sticky, navbar) {
     }
 }
 
+//function that recives scroll logic
 window.onscroll = function () {
 
     window.onscroll = function () {
@@ -327,13 +341,7 @@ window.onscroll = function () {
     }
 }
 
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
+//function to show a randomize movie in a modal
 async function randomize(page) {
     let id = document.getElementById('searchBtn_movies_container');
 
@@ -386,7 +394,7 @@ async function randomize(page) {
         movieTrailerBtn.setAttribute('onclick', `window.open('https://www.youtube.com/watch?v=${videoKey}?start=5&autoplay=1', '_blank')`);
     })();
 }
-    
+
 
 
 
@@ -453,6 +461,7 @@ window.onload = () => {
         }
     });
 
+    //function to user make a search by name that he write on a input box
     function searchByName(input, page) {
 
         let id = document.getElementById('searchInput_movies_container');
@@ -466,6 +475,7 @@ window.onload = () => {
         requestAPI(url, id);
     }
 
+    //function to make input box appear and desappear
     let searchIcon = document.querySelector('#filter-bar__icon');
     searchIcon.addEventListener('click', e => {
 
