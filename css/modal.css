@@ -1,37 +1,29 @@
 .modal-wrapper {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
+  z-index: 99;
+  padding-top: 10%;
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: rgb(0, 0, 0);
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
 }
+
 /* Modal Content */
 .modal-content {
   margin: auto;
-  /* padding: 20px; */
-  /* border: 1px solid #FFD000; */
   width: 50%;
   height: auto;
 }
+
 .modal-content__background {
   display: block;
   background-size: cover;
 }
+
 /* The Close Button */
 .close {
   color: white;
@@ -39,66 +31,103 @@
   font-size: 35px;
   font-weight: bold;
 }
+
 .close:hover, .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
+
 .modal-content__poster-wrapper img {
   width: 250px;
-  /* height: 100%; */
 }
+
 .modal-content__details-wrapper {
   display: flex;
   margin: 5px;
 }
+
 .modal-content__description-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding-left: 20px;
+  justify-content: space-evenly;
   background-color: #000;
   opacity: 85%;
-  padding: 10px;
+  padding: 20px 10px 30px 30px;
 }
+
 .modal-content__title {
   font-size: 1.8em;
   color: #FFD000;
 }
+
 .modal-content__year {
-  margin: 5px 0;
   color: #FFD000;
+  font-size:0.9rem;
 }
+
 .modal-content__genres {
-  margin-top: 10px;
+  font-size:0.8rem;
   color: white;
 }
+
 .modal-content__rating-wrapper {
   display: flex;
   align-items: center;
+  font-size:0.75rem;
   color: white;
 }
-.modal-content__rating {
-  margin: 10px 10px;
-}
+
 .modal-content__overview {
   color: white;
+  font-size:0.8rem;
+  line-height: 1.2;
 }
+
 .modal-content__trailer-button {
   margin: 10px 0;
   color: #FFD000;
   border: 2px solid #FFD000;
   background-color: transparent;
-  width: auto;
-  height: 30px;
+  width: 33%;
+  height: 25px;
   border-radius: 10%;
-  font-size: 1.2em;
+  font-size: 0.6em;
   text-transform: uppercase;
   padding: 0 10px;
 }
+
 .modal-content__trailer-button:hover {
   background-color: #BE1313;
   border: 2px solid #BE1313;
   color: white;
   transition:  1s;
+}
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 1024px) {
+
+  /* MODAL CONTENT */
+  .modal-content {
+    width: 90%;
+  }
+
+  .modal-content__poster-wrapper img {
+    max-width: 200px;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+  .modal-wrapper {
+    padding: 10% 0;
+  }
+  
+  .modal-content__details-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
 }

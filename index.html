@@ -30,90 +30,96 @@
 </head>
 
 <body>
+
     <header id="header" class="header">
         <!-- CAROUSEL -->
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active" id="carousel__img1">
-                    <div class="carousel-item__color"></div>
-                    <img class="d-block w-100" src="" alt="First slide">
-                    <div class="carousel-caption d-none d-flex">
-                        <img src="" alt="" class="carousel-item__poster1">
-                        <div class="carousel-item__description">
-                            <h5 class="carousel-item__title1"></h5>
-                            <p class="carousel-item__date1"></p>
-                            <p class="carousel-item__genres1"></p>
-                            <div class="rating_wrapper">
-                                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
-                                    alt="" class="carousel-item__icon">
-                                <p class="carousel-item__rating1"></p>
+        <div id="carousel-container">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousels" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel" data-slide-to="1"></li>
+                    <li data-target="#carousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active" id="carousel__img1">
+                        <div class="carousel-item__color"></div>
+                        <img class="d-block w-100" src="" alt="First slide">
+                        <div class="carousel-caption d-none d-flex">
+                            <img src="" alt="" class="carousel-item__poster1">
+                            <div class="carousel-item__description">
+                                <h5 class="carousel-item__title1"></h5>
+                                <p class="carousel-item__date1"></p>
+                                <p class="carousel-item__genres1"></p>
+                                <div class="rating_wrapper">
+                                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
+                                        alt="" class="carousel-item__icon">
+                                    <p class="carousel-item__rating1"></p>
+                                </div>
+                                <p class="carousel-item__overview1"></p>
+                                <div class="carousel-item__trailer-wrapper">
+                                    <button class="carousel-item__trailer-button1">▶ Watch Trailer</button>
+                                    <p class="carousel-item__trailer-theater">In Theaters Now</p>
+                                </div>
                             </div>
-                            <p class="carousel-item__overview1"></p>
-                            <div class="carousel-item__trailer-wrapper">
-                                <button class="carousel-item__trailer-button1">▶ Watch Trailer</button>
-                                <p class="carousel-item__trailer-theater">In Theaters Now</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" id="carousel__img2">
+                        <div class="carousel-item__color"></div>
+                        <img class="d-block w-100" src="..." alt="Second slide">
+                        <div class="carousel-caption d-none d-inline-flex">
+                            <img src="" alt="" class="carousel-item__poster2">
+                            <div class="carousel-item__description">
+                                <h5 class="carousel-item__title2"></h5>
+                                <p class="carousel-item__date2"></p>
+                                <p class="carousel-item__genres2"></p>
+                                <div class="rating_wrapper">
+                                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
+                                        alt="" class="carousel-item__icon">
+                                    <p class="carousel-item__rating2"></p>
+                                </div>
+                                <p class="carousel-item__overview2"></p>
+                                <div class="carousel-item__trailer-wrapper">
+                                    <button class="carousel-item__trailer-button2">▶ Watch Trailer</button>
+                                    <p class="carousel-item__trailer-theater">In Theaters Now</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" id="carousel__img3">
+                        <div class="carousel-item__color"></div>
+                        <img class="d-block w-100" src="..." alt="Third slide">
+                        <div class="carousel-caption d-none d-flex">
+                            <img src="" alt="" class="carousel-item__poster3">
+                            <div class="carousel-item__description">
+                                <h5 class="carousel-item__title3"></h5>
+                                <p class="carousel-item__date3"></p>
+                                <p class="carousel-item__genres3"></p>
+                                <div class="rating_wrapper">
+                                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
+                                        alt="" class="carousel-item__icon">
+                                    <p class="carousel-item__rating3"></p>
+                                </div>
+                                <p class="carousel-item__overview3"></p>
+                                <div class="carousel-item__trailer-wrapper">
+                                    <button class="carousel-item__trailer-button3">▶ Watch Trailer</button>
+                                    <p class="carousel-item__trailer-theater">In Theaters Now</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item" id="carousel__img2">
-                    <div class="carousel-item__color"></div>
-                    <img class="d-block w-100" src="..." alt="Second slide">
-                    <div class="carousel-caption d-none d-inline-flex">
-                        <img src="" alt="" class="carousel-item__poster2">
-                        <div class="carousel-item__description">
-                            <h5 class="carousel-item__title2"></h5>
-                            <p class="carousel-item__date2"></p>
-                            <p class="carousel-item__genres2"></p>
-                            <div class="rating_wrapper">
-                                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
-                                    alt="" class="carousel-item__icon">
-                                <p class="carousel-item__rating2"></p>
-                            </div>
-                            <p class="carousel-item__overview2"></p>
-                            <div class="carousel-item__trailer-wrapper">
-                                <button class="carousel-item__trailer-button2">▶ Watch Trailer</button>
-                                <p class="carousel-item__trailer-theater">In Theaters Now</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="carousel__img3">
-                    <div class="carousel-item__color"></div>
-                    <img class="d-block w-100" src="..." alt="Third slide">
-                    <div class="carousel-caption d-none d-flex">
-                        <img src="" alt="" class="carousel-item__poster3">
-                        <div class="carousel-item__description">
-                            <h5 class="carousel-item__title3"></h5>
-                            <p class="carousel-item__date3"></p>
-                            <p class="carousel-item__genres3"></p>
-                            <div class="rating_wrapper">
-                                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
-                                    alt="" class="carousel-item__icon">
-                                <p class="carousel-item__rating3"></p>
-                            </div>
-                            <p class="carousel-item__overview3"></p>
-                            <div class="carousel-item__trailer-wrapper">
-                                <button class="carousel-item__trailer-button3">▶ Watch Trailer</button>
-                                <p class="carousel-item__trailer-theater">In Theaters Now</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Controls -->
+                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
     </header>
 
@@ -141,7 +147,6 @@
         </div>
         <div id='filter-search-nav' class="filter-search-nav">
             <ul class="filter-search-nav__list">
-
                 <li><select name="filter-nav__movie_year" id="filter-nav__movie-year">
                     </select></li>
                 <li><select name="filter-nav__genre" id="filter-nav__genre">
@@ -176,27 +181,26 @@
                     </select></li>
             </ul>
             <button class="filter-nav__search-btn" id="searchBtn">Search</button>
-            <button class="filter-nav__random-btn" id="randomBtn" title="Click here to get a random movie matching your filters"
-             onclick="randomize(1)">Randomizer</button>
+            <button class="filter-nav__random-btn" id="randomBtn"
+                title="Click here to get a random movie matching your filters"
+                onclick="randomize(1)">Randomizer</button>
         </div>
     </nav>
 
-
     <!-- Movies filter result container -->
-    <div id="container_wrapper">
-        <section id="popular_movies_container" class="active"></section>
-        <section id="now_playing_movies_container"></section>
-        <section id="action_movies_container"></section>
-        <section id="drama_movies_container"></section>
-        <section id="comedy_movies_container"></section>
-        <section id="animation_movies_container"></section>
-        <section id="horror_movies_container"></section>
-        <section id="sci-fi_movies_container"></section>
-        <section id="thriller_movies_container"></section>
-        <section id="searchBtn_movies_container"></section>
-        <section id="searchInput_movies_container"></section>
-    </div>
-
+    <section id="container_wrapper">
+        <div id="popular_movies_container" class="active"></div>
+        <div id="now_playing_movies_container"></div>
+        <div id="action_movies_container"></div>
+        <div id="drama_movies_container"></div>
+        <div id="comedy_movies_container"></div>
+        <div id="animation_movies_container"></div>
+        <div id="horror_movies_container"></section>
+        <div id="sci-fi_movies_container"></div>
+        <div id="thriller_movies_container"></div>
+        <div id="searchBtn_movies_container"></div>
+        <div id="searchInput_movies_container"></div>
+    </section>
 
     <!-- MODAL -->
     <!-- The Modal -->
@@ -217,18 +221,13 @@
                         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
                             alt="" class="carousel-item__icon">
                         <p class="modal-content__rating"></p>
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.tubefilter.com%2Fwp-content%2Fuploads%2F2009%2F03%2Fimdb_logo.png&f=1&nofb=1"
-                            alt="" class="carousel-item__icon">
                     </div>
                     <p class="modal-content__overview"></p>
-                    <a href="" class="modal-content__trailer">
-                        <button class="modal-content__trailer-button">▶ Watch Trailer</button>
-                    </a>
+                    <button class="modal-content__trailer-button">▶ Watch Trailer</button>
                 </div>
             </div>
         </div>
     </div>
-
 
 </body>
 

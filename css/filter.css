@@ -6,6 +6,7 @@
     justify-content: space-between;
     padding: 15px;
     margin: 0;
+    font-size: 0.9rem;
 }
 
 .filter-bar__list {
@@ -56,7 +57,7 @@
     border-bottom: 3px solid rgb(190, 190, 190) !important;
 }
 
-#movies_container, #container_wrapper {
+#container_wrapper {
     margin: 5%;
     color:white;
 }
@@ -111,7 +112,6 @@ option[default] {
     font-weight: bold;
 }
 
-
 .filter-nav__search-btn {
     height: 29px;
     width: 80px;
@@ -140,14 +140,29 @@ option[default] {
     
 }
 
-
 /* STICKY NAVBAR */
 
 #nav-wrapper {
     overflow: hidden;
 }
+
 .sticky {
     position: fixed;
     top: 0;
     width: 100%;
+}
+
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 600px) {
+
+    #container_wrapper div {
+        width:77px !important;
+        height:165px !important;
+    }
+
+    #container_wrapper img {
+        width:77px;
+    }
 }
