@@ -2,9 +2,10 @@
 .carousel, .carousel-container, .carousel-slide, .carousel-item, .carousel-inner {
   width: 100%;
   height: 100%;
-  background-position:center center;
+  background-position: center center;
 }
 
+/* carousel items */
 .carousel-item {
   background-size: cover;
   height: 100vh;
@@ -95,7 +96,6 @@
   text-transform: uppercase;
 }
 
-
 .carousel-item__trailer-button1:hover, .carousel-item__trailer-button2:hover, .carousel-item__trailer-button3:hover {
   background-color: #be1313;
   border: 2px solid #be1313;
@@ -114,11 +114,10 @@
   margin-top: 10px;
 }
 
-/* MEDIA QUERIES */
 
+/* MEDIA QUERIES */
 @media only screen and (max-width: 1024px) {
 
-  /* CAROUSEL */
   .carousel-item {
     height: 50vh;
   }
@@ -134,8 +133,6 @@
 }
 
 @media only screen and (max-width: 600px) {
-
-  /* CAROUSEL */
 
   .carousel-item {
     height: 100vh;

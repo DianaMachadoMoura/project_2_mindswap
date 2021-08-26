@@ -1,3 +1,4 @@
+/* MODAL */
 .modal-wrapper {
   display: none;
   position: fixed;
@@ -28,7 +29,7 @@
 .close {
   color: white;
   align-self: flex-end;
-  font-size: 35px;
+  font-size: 2.2rem;
   font-weight: bold;
 }
 
@@ -57,7 +58,7 @@
 }
 
 .modal-content__title {
-  font-size: 1.8em;
+  font-size: 1.8rem;
   color: #FFD000;
 }
 
@@ -92,7 +93,7 @@
   width: 33%;
   height: 25px;
   border-radius: 10%;
-  font-size: 0.6em;
+  font-size: 0.6rem;
   text-transform: uppercase;
   padding: 0 10px;
 }
@@ -122,12 +123,22 @@
 @media only screen and (max-width: 600px) {
 
   .modal-wrapper {
-    padding: 10% 0;
+    padding: 15% 0;
+    background: rgba(22,22,22,1);
+    align-items: center;
   }
   
   .modal-content__details-wrapper {
     flex-direction: column;
     align-items: center;
+    background-color: #000;
+    opacity: 85%;
+  }
+
+  .close {
+    position: absolute;
+    top: 4%;
+    right: 5%;
   }
 
 }
