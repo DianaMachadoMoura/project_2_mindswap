@@ -11,7 +11,6 @@ function requestAPI(url, id) {
         .then(results => results.json())
         .then(data => {
             for (let i = 0; i < data.results.length; i++) {
-                console.log(data.results.length, 'lenght request');
                 if (data.results[i].poster_path) {
                     movies.push(data.results[i]);
                     let poster_path = data.results[i].poster_path;
@@ -187,19 +186,25 @@ function showThrillerMovies(page) {
 //function to user can do a search with the parameters that he chose
 function filter(page) {
     let id = document.getElementById('searchBtn_movies_container');
-
     const discoverEndpoint = 'discover/movie?';
     const genreEndpoint = document.getElementById('filter-nav__genre').value;
     const sortByEndpoint = document.getElementById('filter-nav__sort').value;
     const releaseDate = document.getElementById('filter-nav__movie-year').value;
     const releaseDateEndPoint = `&primary_release_date.gte=${releaseDate}-01-01&primary_release_date.lte=${releaseDate}-12-31`;
     const voteAvrEndpoint = document.getElementById('filter-nav__rating').value;
+    let url;
 
     if (page === 1) {
         movies = [];
     }
 
-    let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint;
+    if (releaseDate) {
+        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint;
+    } else {
+        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + voteAvrEndpoint + genreEndpoint;
+    }
+
+    console.log(url);
 
     requestAPI(url, id);
 
@@ -228,6 +233,7 @@ const infiniteScroll = () => {
         isScrolled = true;
         pageNum += 2;
         movieTabToShow(pageNum);
+        console.log(movieTabToShow);
         setTimeout(() => {
             isScrolled = false;
         }, 1000);
@@ -301,7 +307,6 @@ function setActiveTab(e) {
             movieTabToShow = showThrillerMovies;
             break;
         case 'searchBtn':
-            console.log('heyyyy', 'search_case')
             pageNum = 1;
             let id = document.getElementById('searchBtn_movies_container');
             id.innerHTML = '';
@@ -402,12 +407,6 @@ async function randomize(page) {
 
 }
 
-
-
-
-
-
-
 window.onload = () => {
 
     movieTabToShow = getPopularMovies;
@@ -442,11 +441,9 @@ window.onload = () => {
         if (x.style.display === "none") {
             x.style.display = "flex";
             y.innerText = '❌';
-            y.style.fontSize = '16px';
         } else {
             x.style.display = "none";
             y.innerText = 'Filter';
-            y.style.fontSize = '16px';
         }
     })
 
@@ -461,8 +458,11 @@ window.onload = () => {
         opt.innerHTML = i;
         select.appendChild(opt);
     }
+    var opt = document.createElement('option');
+        opt.value = i;
+        opt.innerHTML = i;
+        select.appendChild(opt);
 
-    // select.value = new Date().getFullYear();
 
     let searchInput = document.querySelector(".filter-bar__value");
 
