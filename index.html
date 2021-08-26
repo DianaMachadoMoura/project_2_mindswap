@@ -124,68 +124,82 @@
     </header>
 
     <!-- Genres and filter navbar -->
-    <nav id="nav-wrapper">
-        <div id="filter-bar-nav">
-            <ul class="filter-bar__list">
-                <li id="popular" class="filter-bar__list-item list-item__selected">Popular</li>
-                <li id="now_playing" class="filter-bar__list-item">NOW PLAYING</li>
-                <li id="action" class="filter-bar__list-item">Action</li>
-                <li id="drama" class="filter-bar__list-item">Drama</li>
-                <li id="comedy" class="filter-bar__list-item">Comedy</li>
-                <li id="animation" class="filter-bar__list-item">Animation</li>
-                <li id="horror" class="filter-bar__list-item">Horror</li>
-                <li id="sci-fi" class="filter-bar__list-item">Sci-Fi</li>
-                <li id="thriller" class="filter-bar__list-item">Thriller</li>
-                <li class="filter-bar__list-item"></li>
-            </ul>
+    <div class="navbar-container">
+        <div class="hamburger-button" onclick="openMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="nav-wrapper" class="nav-wrapper">
             <div>
-                <input id="searchInput" class="filter-bar__value" type="text" placeholder=" Search movie...">
-                <i id="filter-bar__icon" class="fas fa-search"></i>
+                <div class="hamburger-button-close" onclick="closeMenu()">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="filter-bar-nav__items-wrapper">
+                    <ul class="filter-bar__list">
+                        <li id="popular" class="filter-bar__list-item list-item__selected">Popular</li>
+                        <li id="now_playing" class="filter-bar__list-item">NOW PLAYING</li>
+                        <li id="action" class="filter-bar__list-item">Action</li>
+                        <li id="drama" class="filter-bar__list-item">Drama</li>
+                        <li id="comedy" class="filter-bar__list-item">Comedy</li>
+                        <li id="animation" class="filter-bar__list-item">Animation</li>
+                        <li id="horror" class="filter-bar__list-item">Horror</li>
+                        <li id="sci-fi" class="filter-bar__list-item">Sci-Fi</li>
+                        <li id="thriller" class="filter-bar__list-item">Thriller</li>
+                        <li class="filter-bar__list-item"></li>
+                    </ul>
+                    <div class="filter-bar-nav__search-wrapper">
+                        <input id="searchInput" class="filter-bar__value" type="text" placeholder=" Search movie...">
+                        <i id="filter-bar__icon" class="fas fa-search"></i>
+                        <span id="filter-bar__btn" class="filter-bar__filter">Filter</span>
+                    </div>
+                </div>
+
+                <div id='filter-search-nav' class="filter-search-nav">
+                    <ul class="filter-search-nav__list">
+                        <li><select name="filter-nav__movie_year" id="filter-nav__movie-year">
+                            </select></li>
+                        <li><select name="filter-nav__genre" id="filter-nav__genre">
+                                <option value="" disabled selected hidden>Genre</option>
+                                <option id="action-genre" value="&with_genres=28">Action</option>
+                                <option id="drama-genre" value="&with_genres=18">Drama</option>
+                                <option id="comedy-genre" value="&with_genres=35">Comedy</option>
+                                <option id="animation-genre" value="&with_genres=16">Animation</option>
+                                <option id="horror-genre" value="&with_genres=27">Horror</option>
+                                <option id="sci-fi-genre" value="&with_genres=878">Sci-fi</option>
+                                <option id="thriller-genre" value="&with_genres=53">Thriller</option>
+                            </select></li>
+                        <li><select name="filter-nav__rating" id="filter-nav__rating">
+                                <option value="" disabled selected hidden>Rating</option>
+                                <option value="&vote_average.gte=9">9+</option>
+                                <option value="&vote_average.gte=8">8+</option>
+                                <option value="&vote_average.gte=7">7+</option>
+                                <option value="&vote_average.gte=6">6+</option>
+                                <option value="&vote_average.gte=5">5+</option>
+                                <option value="&vote_average.gte=4">4+</option>
+                                <option value="&vote_average.gte=3">3+</option>
+                                <option value="&vote_average.gte=2">2+</option>
+                            </select></li>
+                        <li><select name="filter-nav__sort" id="filter-nav__sort">
+                                <option value="" disabled selected hidden>Sort</option>
+                                <option value="&sort_by=original_title.asc">A-Z</option>
+                                <option value="&sort_by=original_title.desc">Z-A</option>
+                                <option value="&sort_by=release_date.asc">Year Asc</option>
+                                <option value="&sort_by=release_date.desc">Year Desc</option>
+                                <option value="&sort_by=vote_average.asc">Popularity Asc</option>
+                                <option value="&sort_by=vote_average.desc">Popularity Desc</option>
+                            </select></li>
+                    </ul>
+                    <div class="filter-btn-wrapper">
+                        <button class="filter-nav__search-btn" id="searchBtn">Search</button>
+                        <button class="filter-nav__random-btn" id="randomBtn"
+                            title="Click here to get a random movie matching your filters"
+                            onclick="randomize(1)">Randomizer</button>
+                    </div>
+                </div>
             </div>
 
-            <span id="filter-bar__btn" class="filter-bar__filter">Filter</span>
-        </div>
-        <div id='filter-search-nav' class="filter-search-nav">
-            <ul class="filter-search-nav__list">
-                <li><select name="filter-nav__movie_year" id="filter-nav__movie-year">
-                    </select></li>
-                <li><select name="filter-nav__genre" id="filter-nav__genre">
-                        <option value="" disabled selected hidden>Genre</option>
-                        <option id="action-genre" value="&with_genres=28">Action</option>
-                        <option id="drama-genre" value="&with_genres=18">Drama</option>
-                        <option id="comedy-genre" value="&with_genres=35">Comedy</option>
-                        <option id="animation-genre" value="&with_genres=16">Animation</option>
-                        <option id="horror-genre" value="&with_genres=27">Horror</option>
-                        <option id="sci-fi-genre" value="&with_genres=878">Sci-fi</option>
-                        <option id="thriller-genre" value="&with_genres=53">Thriller</option>
-                    </select></li>
-                <li><select name="filter-nav__rating" id="filter-nav__rating">
-                        <option value="" disabled selected hidden>Rating</option>
-                        <option value="&vote_average.gte=9">9+</option>
-                        <option value="&vote_average.gte=8">8+</option>
-                        <option value="&vote_average.gte=7">7+</option>
-                        <option value="&vote_average.gte=6">6+</option>
-                        <option value="&vote_average.gte=5">5+</option>
-                        <option value="&vote_average.gte=4">4+</option>
-                        <option value="&vote_average.gte=3">3+</option>
-                        <option value="&vote_average.gte=2">2+</option>
-                    </select></li>
-                <li><select name="filter-nav__sort" id="filter-nav__sort">
-                        <option value="" disabled selected hidden>Sort</option>
-                        <option value="&sort_by=original_title.asc">A-Z</option>
-                        <option value="&sort_by=original_title.desc">Z-A</option>
-                        <option value="&sort_by=release_date.asc">Year Asc</option>
-                        <option value="&sort_by=release_date.desc">Year Desc</option>
-                        <option value="&sort_by=vote_average.asc">Popularity Asc</option>
-                        <option value="&sort_by=vote_average.desc">Popularity Desc</option>
-                    </select></li>
-            </ul>
-            <button class="filter-nav__search-btn" id="searchBtn">Search</button>
-            <button class="filter-nav__random-btn" id="randomBtn"
-                title="Click here to get a random movie matching your filters"
-                onclick="randomize(1)">Randomizer</button>
-        </div>
-    </nav>
+        </nav>
+    </div>
+
 
     <!-- Movies filter result container -->
     <section id="container_wrapper">

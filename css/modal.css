@@ -1,7 +1,7 @@
 .modal-wrapper {
   display: none;
   position: fixed;
-  z-index: 99;
+  z-index: 98;
   padding-top: 10%;
   left: 0;
   top: 0;

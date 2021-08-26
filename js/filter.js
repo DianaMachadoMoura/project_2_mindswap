@@ -499,6 +499,18 @@ window.onload = () => {
 
     });
 
+}
 
+function openMenu() {
+    let navWrapper = document.querySelector('#nav-wrapper');
+    navWrapper.classList.add('nav-active');
+    let closeButton = document.querySelector('.hamburger-button-close');
+    closeButton.style.display = 'flex';
+}
 
+function closeMenu() {
+    let navWrapper = document.querySelector('#nav-wrapper');
+    navWrapper.classList.remove('nav-active');
+    let closeButton = document.querySelector('.hamburger-button-close');
+    closeButton.style.display = 'none';
 }
