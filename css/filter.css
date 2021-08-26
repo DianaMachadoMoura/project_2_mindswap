@@ -151,18 +151,3 @@ option[default] {
     top: 0;
     width: 100%;
 }
-
-
-/* MEDIA QUERIES */
-
-@media only screen and (max-width: 600px) {
-
-    #container_wrapper div {
-        width:77px !important;
-        height:165px !important;
-    }
-
-    #container_wrapper img {
-        width:77px;
-    }
-}
