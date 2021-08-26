@@ -129,10 +129,6 @@ option[default] {
     margin-right: 15px;
 }
 
-.filter-nav__search-btn:hover {
-        
-}
-
 .filter-nav__random-btn {
     height: 29px;
     width: auto;
@@ -143,12 +139,8 @@ option[default] {
     margin-right: 15px;
 }
 
-.filter-nav__random-btn:hover {
-    
-}
 
 /* sticky navbar*/
-
 #nav-wrapper {
     overflow: hidden;
 }

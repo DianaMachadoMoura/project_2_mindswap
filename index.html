@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +24,6 @@
     <script src='js/carousel.js'></script>
     <script src='js/filter.js'></script>
     <script src='js/modal.js'></script>
-
     <title>Movies Data Base</title>
 </head>
 
@@ -41,20 +39,21 @@
                     <li data-target="#carousel" data-slide-to="1"></li>
                     <li data-target="#carousel" data-slide-to="2"></li>
                 </ol>
-                <!-- Wrapper for slides -->
+                <!-- Wrapper for movies slides -->
                 <div class="carousel-inner">
+                    <!-- First carousel item -->
                     <div class="carousel-item active" id="carousel__img1">
                         <div class="carousel-item__color"></div>
-                        <img class="d-block w-100" src="" alt="First slide">
+                        <img class="d-block w-100" alt="First movie">
                         <div class="carousel-caption d-none d-flex">
-                            <img src="" alt="" class="carousel-item__poster1">
+                            <img alt="Movie Poster" class="carousel-item__poster1">
                             <div class="carousel-item__description">
                                 <h5 class="carousel-item__title1"></h5>
                                 <p class="carousel-item__date1"></p>
                                 <p class="carousel-item__genres1"></p>
                                 <div class="rating_wrapper">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
-                                        alt="" class="carousel-item__icon">
+                                        alt="star" class="carousel-item__icon">
                                     <p class="carousel-item__rating1"></p>
                                 </div>
                                 <p class="carousel-item__overview1"></p>
@@ -65,18 +64,20 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Second carousel item -->
                     <div class="carousel-item" id="carousel__img2">
                         <div class="carousel-item__color"></div>
-                        <img class="d-block w-100" src="..." alt="Second slide">
+                        <img class="d-block w-100" alt="Second movie">
                         <div class="carousel-caption d-none d-inline-flex">
-                            <img src="" alt="" class="carousel-item__poster2">
+                            <img alt="Movie Poster" class="carousel-item__poster2">
                             <div class="carousel-item__description">
                                 <h5 class="carousel-item__title2"></h5>
                                 <p class="carousel-item__date2"></p>
                                 <p class="carousel-item__genres2"></p>
                                 <div class="rating_wrapper">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
-                                        alt="" class="carousel-item__icon">
+                                        alt="star" class="carousel-item__icon">
                                     <p class="carousel-item__rating2"></p>
                                 </div>
                                 <p class="carousel-item__overview2"></p>
@@ -87,18 +88,20 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Third carousel item -->
                     <div class="carousel-item" id="carousel__img3">
                         <div class="carousel-item__color"></div>
-                        <img class="d-block w-100" src="..." alt="Third slide">
+                        <img class="d-block w-100" alt="Third movie">
                         <div class="carousel-caption d-none d-flex">
-                            <img src="" alt="" class="carousel-item__poster3">
+                            <img alt="Movie Poster" class="carousel-item__poster3">
                             <div class="carousel-item__description">
                                 <h5 class="carousel-item__title3"></h5>
                                 <p class="carousel-item__date3"></p>
                                 <p class="carousel-item__genres3"></p>
                                 <div class="rating_wrapper">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
-                                        alt="" class="carousel-item__icon">
+                                        alt="star" class="carousel-item__icon">
                                     <p class="carousel-item__rating3"></p>
                                 </div>
                                 <p class="carousel-item__overview3"></p>
@@ -110,6 +113,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Controls -->
                 <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -119,6 +123,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
+
             </div>
         </div>
     </header>
@@ -133,6 +138,8 @@
                 <div class="hamburger-button-close" onclick="closeMenu()">
                     <i class="fas fa-times"></i>
                 </div>
+
+                <!-- Genres and filter navbar -->
                 <div class="filter-bar-nav__items-wrapper">
                     <ul class="filter-bar__list">
                         <li id="popular" class="filter-bar__list-item list-item__selected">Popular</li>
@@ -152,12 +159,16 @@
                         <span id="filter-bar__btn" class="filter-bar__filter">Filter</span>
                     </div>
                 </div>
-
+                
+                <!-- Filter search form -->
                 <div id='filter-search-nav' class="filter-search-nav">
                     <ul class="filter-search-nav__list">
-                        <li><select name="filter-nav__movie_year" id="filter-nav__movie-year">
-                            </select></li>
-                        <li><select name="filter-nav__genre" id="filter-nav__genre">
+                        <li>
+                            <select name="filter-nav__movie_year" id="filter-nav__movie-year">
+                            </select>
+                        </li>
+                        <li>
+                            <select name="filter-nav__genre" id="filter-nav__genre">
                                 <option value="" disabled selected hidden>Genre</option>
                                 <option id="action-genre" value="&with_genres=28">Action</option>
                                 <option id="drama-genre" value="&with_genres=18">Drama</option>
@@ -166,8 +177,10 @@
                                 <option id="horror-genre" value="&with_genres=27">Horror</option>
                                 <option id="sci-fi-genre" value="&with_genres=878">Sci-fi</option>
                                 <option id="thriller-genre" value="&with_genres=53">Thriller</option>
-                            </select></li>
-                        <li><select name="filter-nav__rating" id="filter-nav__rating">
+                            </select>
+                        </li>
+                        <li>
+                            <select name="filter-nav__rating" id="filter-nav__rating">
                                 <option value="" disabled selected hidden>Rating</option>
                                 <option value="&vote_average.gte=9">9+</option>
                                 <option value="&vote_average.gte=8">8+</option>
@@ -177,8 +190,10 @@
                                 <option value="&vote_average.gte=4">4+</option>
                                 <option value="&vote_average.gte=3">3+</option>
                                 <option value="&vote_average.gte=2">2+</option>
-                            </select></li>
-                        <li><select name="filter-nav__sort" id="filter-nav__sort">
+                            </select>
+                        </li>
+                        <li>
+                            <select name="filter-nav__sort" id="filter-nav__sort">
                                 <option value="" disabled selected hidden>Sort</option>
                                 <option value="&sort_by=original_title.asc">A-Z</option>
                                 <option value="&sort_by=original_title.desc">Z-A</option>
@@ -186,7 +201,8 @@
                                 <option value="&sort_by=release_date.desc">Year Desc</option>
                                 <option value="&sort_by=vote_average.asc">Popularity Asc</option>
                                 <option value="&sort_by=vote_average.desc">Popularity Desc</option>
-                            </select></li>
+                            </select>
+                        </li>
                     </ul>
                     <div class="filter-btn-wrapper">
                         <button class="filter-nav__search-btn" id="searchBtn">Search</button>
@@ -218,13 +234,11 @@
 
     <!-- MODAL -->
     <!-- The Modal -->
-    <div id="modal-wrapper" class="modal-wrapper">
+    <section id="modal-wrapper" class="modal-wrapper">
         <!-- Modal content -->
         <div class="modal-content modal-content__background">
             <div class="modal-content__color"></div>
-            <!-- <img src="" alt="" class="modal-content__background"> -->
             <div class="modal-content__details-wrapper">
-                <!-- poster, title, year, genres, rating, overview, youtube -->
                 <div class="modal-content__poster-wrapper"><img class="modal-content__poster" alt=""></div>
                 <div class="modal-content__description-wrapper">
                     <span class="close" onclick="closeModal()">&times;</span>
@@ -233,7 +247,7 @@
                     <p class="modal-content__genres"></p>
                     <div class="modal-content__rating-wrapper">
                         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng-4.vector.me%2Ffiles%2Fimages%2F4%2F1%2F410258%2Fstar_thumb&f=1&nofb=1"
-                            alt="" class="carousel-item__icon">
+                            alt="star" class="carousel-item__icon">
                         <p class="modal-content__rating"></p>
                     </div>
                     <p class="modal-content__overview"></p>
@@ -241,7 +255,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
 </body>
 
