@@ -125,7 +125,10 @@
 
     <!-- Genres and filter navbar -->
     <nav id="nav-wrapper">
-        <div id="filter-bar-nav">
+        <div class="hamburger-button">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="filter-bar-nav__items-wrapper">
             <ul class="filter-bar__list">
                 <li id="popular" class="filter-bar__list-item list-item__selected">Popular</li>
                 <li id="now_playing" class="filter-bar__list-item">NOW PLAYING</li>
@@ -142,9 +145,9 @@
                 <input id="searchInput" class="filter-bar__value" type="text" placeholder=" Search movie...">
                 <i id="filter-bar__icon" class="fas fa-search"></i>
             </div>
-
             <span id="filter-bar__btn" class="filter-bar__filter">Filter</span>
         </div>
+
         <div id='filter-search-nav' class="filter-search-nav">
             <ul class="filter-search-nav__list">
                 <li><select name="filter-nav__movie_year" id="filter-nav__movie-year">
