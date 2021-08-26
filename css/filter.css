@@ -1,10 +1,11 @@
 /* FILTER NAVBAR */
-
-#nav-wrapper {
+.nav-wrapper {
     background: rgb(22, 22, 22);
     color: rgb(145, 145, 145);
     display: flex;
-
+    flex-direction: column;
+    width: 100%;
+    font-size: 0.9rem;
 }
 
 .filter-bar-nav__items-wrapper {
@@ -13,13 +14,12 @@
     padding: 15px;
     width: 100%;
     margin: auto;
-    font-size: 0.9rem;
 }
 
 .filter-bar__list {
     display: flex;
     justify-content: space-evenly;
-    width: 70%;
+    width: 75%;
 }
 
 .filter-bar__list > li {
@@ -36,8 +36,18 @@
     transition:  1.5s;
 }
 
+/* Filter bar search */
+.filter-bar-nav__search-wrapper {
+    display:flex;
+}
+
+#filter-bar__icon {
+    margin:auto;
+}
+
 .filter-bar__value {
-    visibility: hidden;
+    display:none;
+    margin: 0 10px;
     border-radius: 5px;
     border: 2px solid rgb(145, 145, 145);
     background-color: transparent;
@@ -55,44 +65,12 @@
 }
 
 .show-search-input {
-    visibility: visible;
+    display:flex;
 }
 
 .list-item__selected {
     color: white;
     border-bottom: 3px solid rgb(190, 190, 190) !important;
-}
-
-/* sticky navbar*/
-
-#nav-wrapper {
-    overflow: hidden;
-}
-
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-/* Hamburger button */
-.hamburger-button {
-    color: rgb(145, 145, 145);
-    font-size: 1.3em;
-    cursor: pointer;
-    margin: auto 1%;
-    display: none;
-}
-
-/* MOVIE CONTAINER STYLES */
-
-#container_wrapper {
-    margin: 5%;
-    color:white;
-}
-
-.inactive {
-    display: none;
 }
 
 .filter-bar__filter {
@@ -107,6 +85,7 @@
     color: white;
     border-bottom: 3px solid rgb(190, 190, 190);
     transition:  2s;
+    font-size: 0.9rem;
 }
 
 option[default] {
@@ -138,7 +117,6 @@ option[default] {
     background-color: rgb(145, 145,145);
     border: 2px solid rgb(145, 145,145);
     color:black;
-    font-weight: bold;
 }
 
 .filter-nav__search-btn {
@@ -169,33 +147,74 @@ option[default] {
     
 }
 
+/* sticky navbar*/
+
+#nav-wrapper {
+    overflow: hidden;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* Hamburger button */
+.hamburger-button {
+    color: rgb(145, 145, 145);
+    font-size: 1.3em;
+    cursor: pointer;
+    margin: auto 1%;
+    display: none;
+}
+
+.hamburger-button-close {
+    display:none;
+}
+
+/* MOVIE CONTAINER STYLES */
+
+#container_wrapper {
+    margin: 5%;
+    color:white;
+}
+
+.inactive {
+    display: none;
+}
+
 /* MEDIA QUERIES  */
+
+@media only screen and (max-width: 1024px) {
+
+    .filter-bar-nav__items-wrapper {
+        font-size:0.8rem;
+    }
+}
+
 @media only screen and (max-width: 600px) {
 
     /* FILTER NAVBAR */
     /* Hanburger button */
-    .hanbuerger-button {
+    .hamburger-button {
         display: block;
         z-index: 999;
     }
 
-    .hamburger-button i.active:before {
-        content: "\f00d";
-    }
 
     /* navbar content */
-
-    .filter-bar-nav__items-wrapper {
+    .nav-wrapper {
         position: fixed;
         height: 100vh;
         width: 100%;
-        /* left: -100%; */
+        left: -100%;
         top: 0;
+        padding: 5%;
         background-color: rgb(22, 22, 22);
         text-align: center;
-        padding-top: 100px;
         transition: all 0.4s ease;
         flex-direction: column;
+        justify-content: center;
         z-index:99;
     }
 
@@ -205,18 +224,67 @@ option[default] {
         height:70%;
     }
 
-    .filter-bar-nav__items-wrapper .active {
+    .filter-bar-nav__items-wrapper {
+        flex-direction: column;
+    }
+
+    .nav-wrapper.nav-active {
         left: 0;
     }
 
-    .filter-bar-nav__items-wrapper li, .filter-bar-nav__items-wrapper div {
-        /* display: block; */
+    .hamburger-button-close.nav-active {
+        display:block;
     }
 
-    .filter-bar__list > li {
+    .filter-bar__list > li, .filter-bar__filter {
         border-bottom:none !important;
     }
 
+    .filter-bar-nav__search-wrapper {
+        display: flex;
+        height: fit-content;
+    }
+
+    #filter-bar__icon {
+        margin-right:0;
+    }
+
+    /* search filters */
+    .filter-search-nav {
+        display: flex;
+        width: 100%;
+        margin-top:20%;
+        background: transparent;
+    }
+
+    .filter-search-nav__list {
+        display: flex;
+        flex-direction: column;
+        width:50%;
+        padding:0;
+    }
+
+    #filter-nav__movie-year, #filter-nav__genre, #filter-nav__rating, #filter-nav__sort {
+        width: 80%;
+        height: 10%;
+        margin: 5%;
+    }
+
+    .filter-btn-wrapper {
+        flex-direction: column;
+        margin:2%;
+        width: 30%;
+    }
+
+    .filter-nav__search-btn {
+        margin:2%;
+        height:25px;
+    }
+
+    .filter-nav__random-btn {
+        margin:4% 2%;
+        height:25px;
+    }
 
     /* MOVIES CONTAINER */
     .responsive-flex {
