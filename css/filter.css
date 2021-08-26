@@ -151,3 +151,21 @@ option[default] {
     top: 0;
     width: 100%;
 }
+
+
+/* MEDIA QUERIES  */
+
+@media only screen and (max-width: 600px) {
+
+    .responsive-flex {
+        display: flex;
+        align-items: center;
+        margin: 20px 5px !important;
+        width: auto !important;
+    }
+
+    .responsive-flex > div {
+        margin-left: 10px;
+    }
+    
+}
