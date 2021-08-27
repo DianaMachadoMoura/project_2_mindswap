@@ -86,7 +86,7 @@ window.onload = () => {
     });
 
     // function to user make a search by name that he write on a input box
-    function searchByName(input, page) {
+    function searchByName(input) {
 
         let id = document.getElementById('searchInput_movies_container');
         id.innerHTML = '';
@@ -118,11 +118,6 @@ function requestAPI(url, id) {
     fetch(url)
         .then(results => results.json())
         .then(data => {
-            console.log("ANTES do fetch:");
-            console.log("movies" + movies);
-            console.log("movies.length: " + movies.length);
-            console.log("data.results.length: " + data.results.length);
-            console.log(data.results);
 
             for (let i = 0; i < data.results.length; i++) {
                 if (data.results[i].poster_path) {
@@ -138,17 +133,11 @@ function requestAPI(url, id) {
                 }
             }
             id.innerHTML += htmlStr;
-
-            console.log("DEPOIS do fetch:");
-            console.log("movies" + movies);
-            console.log("movies.length: " + movies.length);
         });
 }
 
 //function to make api request to get popular movies 
 function getPopularMovies(page) {
-
-    console.log("GET POPULAR!!!!!!!!!!!");
     
     const moviesEndpoint = 'movie/popular?'
     if (page === 1) {
@@ -162,6 +151,8 @@ function getPopularMovies(page) {
 
     requestAPI(url, id);
     requestAPI(url2, id);
+
+    console.log(url);
 }
 
 //function to make api request to get now playing movies 
@@ -316,37 +307,39 @@ function filter(page) {
     const voteAvrEndpoint = document.getElementById('filter-nav__rating').value;
     let url;
 
-    if (page === 1) {
+    if (pageNum === 1) {
         movies = [];
     }
 
+    console.log("pageNum filter: " + pageNum);
+
     if (releaseDate) {
-        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint;
+        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint + `&page=${pageNum}`;
     } else {
-        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}&page='${page}` + voteAvrEndpoint + genreEndpoint;
+        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}` + voteAvrEndpoint + genreEndpoint +`&page=${pageNum}`;
     }
 
     console.log(url);
 
     requestAPI(url, id);
-
-    resetFilter();
+    
 }
 
-//function to reset filter parameters
-function resetFilter() {
-    const dropDownYear = document.getElementById("filter-nav__movie-year");
-    dropDownYear.selectedIndex = 0;
+// //function to reset filter parameters
+// function resetFilter() {
 
-    const dropDownGenre = document.getElementById("filter-nav__genre");
-    dropDownGenre.selectedIndex = 0;
+//     const dropDownYear = document.getElementById("filter-nav__movie-year");
+//     dropDownYear.selectedIndex = 0;
 
-    const dropDownRating = document.getElementById("filter-nav__rating");
-    dropDownRating.selectedIndex = 0;
+//     const dropDownGenre = document.getElementById("filter-nav__genre");
+//     dropDownGenre.selectedIndex = 0;
 
-    const dropDownSort = document.getElementById("filter-nav__sort");
-    dropDownSort.selectedIndex = 0;
-}
+//     const dropDownRating = document.getElementById("filter-nav__rating");
+//     dropDownRating.selectedIndex = 0;
+
+//     const dropDownSort = document.getElementById("filter-nav__sort");
+//     dropDownSort.selectedIndex = 0;
+// }
 
 //function to do infinite scroll on window
 let isScrolled = false;
@@ -412,7 +405,8 @@ function setActiveTab(e) {
         case 'animation':
             pageNum = 1;
             movieTabToShow = showAnimationMovies;
-            showAnimationMovies(pageNum);            break;
+            showAnimationMovies(pageNum);            
+            break;
         case 'horror':
             pageNum = 1;
             movieTabToShow = showHorrorMovies;
@@ -508,8 +502,6 @@ async function randomize(page) {
 
         movieTrailerBtn.setAttribute('onclick', `window.open('https://www.youtube.com/watch?v=${videoKey}?start=5&autoplay=1', '_blank')`);
     }) ();
-
-    resetFilter();
 
 }
 
