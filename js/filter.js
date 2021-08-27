@@ -4,6 +4,8 @@ const genreEndpoint = '&with_genres=';
 let pageNum = 1;
 let movies = [];
 let movieTabToShow;
+let containerToPopulate;
+let genreId;
 
 //function that recives scroll logic
 window.onscroll = function () {
@@ -56,14 +58,14 @@ window.onload = () => {
     // search filters container toggle
     const filterBtn = document.getElementById('filter-bar__btn');
     filterBtn.addEventListener('click', e => {
-        const x = document.getElementById("filter-search-nav");
-        const y = document.getElementById('filter-bar__btn');
-        if (x.style.display === "none") {
-            x.style.display = "flex";
-            y.innerText = '❌';
+        const searchFormContainer = document.getElementById("filter-search-nav");
+        const filterTab = document.getElementById('filter-bar__btn');
+        if (searchFormContainer.style.display === "none") {
+            searchFormContainer.style.display = "flex";
+            filterTab.innerText = '❌';
         } else {
-            x.style.display = "none";
-            y.innerText = 'Filter';
+            searchFormContainer.style.display = "none";
+            filterTab.innerText = 'Filter';
         }
     })
 
@@ -78,6 +80,7 @@ window.onload = () => {
         select.appendChild(opt);
     }
     
+    // search by name event
     let searchInput = document.querySelector(".filter-bar__value");
     searchInput.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
@@ -173,129 +176,20 @@ function showNowPlayingMovies() {
 
 }
 
-//function to make api request to get action movies 
-function showActionMovies() {
+// function to prepare api request to get movies with a specific genre
+function showMoviesByGenre() {
 
-    const genreId = '28';
     if (pageNum === 1) {
         movies = [];
     }
+
     let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}` + genreEndpoint  + genreId;
     let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}` + genreEndpoint + genreId;
 
-    let id = document.getElementById('action_movies_container');
-
-    requestAPI(url, id);
-    requestAPI(url2, id);
+    requestAPI(url, containerToPopulate);
+    requestAPI(url2, containerToPopulate);
 }
 
-//function to make api request to get drama movies 
-function showDramaMovies() {
-
-    const genreId = '18';
-
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    const url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}` + genreEndpoint + genreId;
-    const url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}` + genreEndpoint + genreId;
-
-    const id = document.getElementById('drama_movies_container');
-
-    requestAPI(url, id);
-    requestAPI(url2, id);
-}
-
-//function to make api request to get comedy movies 
-function showComedyMovies() {
-
-    const genreId = '35';
-
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    const url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}` + genreEndpoint  + genreId;
-    const url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}` + genreEndpoint + genreId;
-
-    const id = document.getElementById('comedy_movies_container');
-
-    requestAPI(url, id);
-    requestAPI(url2, id);
-}
-
-//function to make api request to get animation movies 
-function showAnimationMovies() {
-
-    const genreId = '16';
-
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    const url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}` + genreEndpoint + genreId;
-    const url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}` + genreEndpoint + genreId;
-
-    const id = document.getElementById('animation_movies_container');
-
-    requestAPI(url, id);
-    requestAPI(url2, id);
-}
-
-//function to make api request to get horror movies 
-function showHorrorMovies() {
-    
-    const genreId = '27'
-
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}` + genreEndpoint + genreId;
-    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}` + genreEndpoint + genreId;
-
-    let id = document.getElementById('horror_movies_container');
-
-    requestAPI(url, id);
-    requestAPI(url2, id);
-}
-
-//function to make api request to get sci-fi movies 
-function showSci_fiMovies() {
-
-    const genreId = '878'
-
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    const url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}` + genreEndpoint + genreId;
-    const url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}` + genreEndpoint + genreId;
-
-    const id = document.getElementById('sci-fi_movies_container');
-
-    requestAPI(url, id);
-    requestAPI(url2, id);
-}
-
-//function to make api request to get thriller movies 
-function showThrillerMovies() {
-
-    const genreId = '53';
-
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    const url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}` + genreEndpoint  + genreId;
-    const url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}` + genreEndpoint  + genreId;
-
-    const id = document.getElementById('thriller_movies_container');
-
-    requestAPI(url, id);
-    requestAPI(url2, id);
-}
 
 //function to user can do a search with the parameters that he chose
 function filter() {
@@ -345,7 +239,7 @@ const infiniteScroll = () => {
     if (window.scrollY > (document.body.offsetHeight - 100) && !isScrolled) {
         isScrolled = true;
         pageNum += 2;
-        movieTabToShow(pageNum);
+        movieTabToShow();
         setTimeout(() => {
             isScrolled = false;
         }, 1000);
@@ -386,38 +280,52 @@ function setActiveTab(e) {
             break;
         case 'action':
             pageNum = 1;
-            movieTabToShow = showActionMovies;
-            showActionMovies();
+            genreId = '28';
+            containerToPopulate = document.getElementById('action_movies_container');
+            movieTabToShow = showMoviesByGenre;
+            showMoviesByGenre()
             break;
         case 'drama':
             pageNum = 1;
-            movieTabToShow = showDramaMovies;
-            showDramaMovies();
+            genreId = '18';
+            containerToPopulate = document.getElementById('drama_movies_container');
+            movieTabToShow = showMoviesByGenre;
+            showMoviesByGenre();
             break;
         case 'comedy':
             pageNum = 1;
-            movieTabToShow = showComedyMovies;
-            showComedyMovies();
+            genreId = '35';
+            containerToPopulate = document.getElementById('comedy_movies_container');
+            movieTabToShow = showMoviesByGenre;
+            showMoviesByGenre();
             break;
         case 'animation':
             pageNum = 1;
-            movieTabToShow = showAnimationMovies;
-            showAnimationMovies();            
+            genreId = '16';
+            containerToPopulate = document.getElementById('animation_movies_container');
+            movieTabToShow = showMoviesByGenre;
+            showMoviesByGenre();      
             break;
         case 'horror':
             pageNum = 1;
-            movieTabToShow = showHorrorMovies;
-            showHorrorMovies();
+            genreId = '27';
+            containerToPopulate = document.getElementById('horror_movies_container');
+            movieTabToShow = showMoviesByGenre;
+            showMoviesByGenre();      
             break;
         case 'sci-fi':
             pageNum = 1;
-            movieTabToShow = showSci_fiMovies;
-            showSci_fiMovies();
+            genreId = '878';
+            containerToPopulate = document.getElementById('sci-fi_movies_container');
+            movieTabToShow = showMoviesByGenre;
+            showMoviesByGenre();
             break;
         case 'thriller':
             pageNum = 1;
-            movieTabToShow = showThrillerMovies;
-            showThrillerMovies();            
+            genreId = '53';
+            containerToPopulate = document.getElementById('thriller_movies_container');
+            movieTabToShow = showMoviesByGenre;
+            showMoviesByGenre();          
             break;
         case 'searchBtn':
             pageNum = 1;
@@ -431,7 +339,7 @@ function setActiveTab(e) {
     }
 }
 
-//functiion to make the navbar sticky
+//function to make the navbar sticky
 function myFunction(sticky, navbar) {
     if (window.pageYOffset >= sticky) {
         navbar.classList.add("sticky")
@@ -464,9 +372,8 @@ async function randomize(pageNum) {
     const response = await fetch(url)
     let data = await response.json();
     let randomId = Math.floor(Math.random() * (data.results.length - 0 + 1)) + 0;
-    let videoKey = await getYoutubeKey(data.results[randomId].id);
 
-    (() => {
+    (async () => {
 
         let randomMovieToShow = data.results[randomId];
 
@@ -495,6 +402,8 @@ async function randomize(pageNum) {
         movieOverview.innerHTML = randomMovieToShow.overview;
 
         const movieTrailerBtn = document.querySelector('.modal-content__trailer-button');
+
+        let videoKey = await getYoutubeKey(randomMovieToShow.id);
 
         movieTrailerBtn.setAttribute('onclick', `window.open('https://www.youtube.com/watch?v=${videoKey}?start=5&autoplay=1', '_blank')`);
     }) ();
