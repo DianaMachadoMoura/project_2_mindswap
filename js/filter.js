@@ -135,7 +135,7 @@ function requestAPI(url, id) {
                         date = data.results[i].release_date.split('-')[0];
                     }
                     let rating = data.results[i].vote_average;
-                    htmlStr += `<div class='responsive-flex' style='float:left;margin:40px 20px;height:230px;width:154px;'><img id='${data.results[i].id}' onclick='showDetails(this.id)' class="myBtn" src='${imgPath}${poster_path}'><div style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
+                    htmlStr += `<div class='responsive-flex' style='float:left;margin:40px 20px;height:230px;width:154px;'><img id='${data.results[i].id}' onclick='showDetails(this.id)' class="myBtn" src='${imgPath}${poster_path}'><div class="responsive-flex__text" style='text-align:left;font-size:0.9em;'><p style='font-weight:bold;padding:2px 0'>${title}</p><p>${date}</p><div style='display:flex;padding-top:2px'><img src='resources/stars.png' style='width:15px;'><p style='font-weight:bold;padding-left:5px;'>${rating}</p></div></div></div>`;
                 }
             }
             id.innerHTML += htmlStr;

@@ -194,6 +194,16 @@ option[default] {
 
 @media only screen and (max-width: 1024px) {
 
+    .responsive-flex {
+        display: flex;
+        align-items: center;
+        width: 28% !important;
+    }
+
+    .responsive-flex__text {
+        margin-left: 10px;
+    }
+
     .filter-bar-nav__items-wrapper {
         flex-direction:column;
         font-size:0.8rem;
@@ -321,9 +331,5 @@ option[default] {
         margin: 20px 5px !important;
         width: auto !important;
     }
-
-    .responsive-flex > div {
-        margin-left: 10px;
-    }
-    
+   
 }
