@@ -22,18 +22,22 @@ function getGenres() {
     const genresEndpoint = '/genre/movie/list?';
     return fetch(APIRequestPrefix + genresEndpoint + APIKey + '&language=en-US')
         .then(response => {
+            checkRequestError(response);
             return response.json();
         })
         .then(data => {
             genresArr = data.genres;
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            alert("Something went wrong. Please try again!")
+            console.log(error)});
 }
 
 //function to make the request to api to get now playing movies
 async function getNowPlayingMovies() {
 
     const response = await fetch(APIRequestPrefix + 'movie/now_playing?' + APIKey + '&language=en-US&page=1');
+    checkRequestError(response);
     const data = await response.json();
 
     await populateCarousel(data);
@@ -81,7 +85,8 @@ async function populateCarousel(data) {
 //function to get movie youtube key from api
 async function getYoutubeKey(id) {
 
-    const response = await fetch(APIRequestPrefix + `/movie/${id}/videos?` + APIKey)
+    const response = await fetch(APIRequestPrefix + `/movie/${id}/videos?` + APIKey);
+    checkRequestError(response);
     let videoData = await response.json();
     let videoKey = await getVideo(videoData.results);
 

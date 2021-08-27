@@ -30,7 +30,7 @@ window.onload = () => {
 
     // populate the default selected movies' container (popular)
     movieTabToShow = getPopularMovies;
-    movieTabToShow(1);
+    movieTabToShow();
 
     // populating movies container according to the genre tab selected
     document.querySelectorAll('.filter-bar__list-item').forEach(item => {
@@ -120,7 +120,9 @@ function requestAPI(url, id) {
     let htmlStr = '';
 
     fetch(url)
-        .then(results => results.json())
+        .then(results => {
+            checkRequestError(results);
+            return results.json()})
         .then(data => {
 
             for (let i = 0; i < data.results.length; i++) {
@@ -137,7 +139,11 @@ function requestAPI(url, id) {
                 }
             }
             id.innerHTML += htmlStr;
-        });
+        })
+        .catch(error =>  {
+            alert("Something went wrong. Please try again!")
+            console.log(error)});
+        
 }
 
 //function to make api request to get popular movies 
@@ -370,6 +376,7 @@ async function randomize(pageNum) {
     }
     
     const response = await fetch(url)
+    checkRequestError(response);
     let data = await response.json();
     let randomId = Math.floor(Math.random() * (data.results.length - 0 + 1)) + 0;
 
@@ -406,8 +413,11 @@ async function randomize(pageNum) {
         let videoKey = await getYoutubeKey(randomMovieToShow.id);
 
         movieTrailerBtn.setAttribute('onclick', `window.open('https://www.youtube.com/watch?v=${videoKey}?start=5&autoplay=1', '_blank')`);
-    }) ();
-
+    }) ()
+    .catch(error => {
+        alert("Something went wrong. Please try again!");
+        console.log(error);
+    })
 }
 
 function openMenu() {
@@ -425,3 +435,15 @@ function closeMenu() {
     let closeButton = document.querySelector('.hamburger-button-close');
     closeButton.style.display = 'none';
 }
+
+function checkRequestError(response){
+	if(!response.ok){
+        if(response.status === 404){
+		    window.location.href = "404.html";
+            return;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+
+	}
+}   
+    
