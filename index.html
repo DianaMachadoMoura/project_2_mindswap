@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -7,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/ico" href="resources/icon.png"/>
-    
-    
+    <link rel="shortcut icon" type="image/ico" href="resources/icon.png" />
+
+
 
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/reset.css">
@@ -29,7 +30,7 @@
     <script src='js/carousel.js'></script>
     <script src='js/filter.js'></script>
     <script src='js/modal.js'></script>
-    <title>Movies Data Base</title>
+    <title>Movies Database</title>
 </head>
 
 <body>
@@ -164,7 +165,7 @@
                         <span id="filter-bar__btn" class="filter-bar__filter">Filter</span>
                     </div>
                 </div>
-                
+
                 <!-- Filter search form -->
                 <div id='filter-search-nav' class="filter-search-nav">
                     <ul class="filter-search-nav__list">
@@ -212,9 +213,12 @@
                     </ul>
                     <div class="filter-btn-wrapper">
                         <button class="filter-nav__search-btn" id="searchBtn">Search</button>
+                        <button class="filter-nav__reset-btn" id="resetBtn" onclick="resetFilter()">Reset</button>
                         <button class="filter-nav__random-btn" id="randomBtn"
                             title="Click here to get a random movie matching your filters"
                             onclick="randomize(1)">Randomizer</button>
+                        <span class="filter-nav__info" title='Get a random movie according to your criteria'>&#9432;</span>
+
                     </div>
                 </div>
             </div>

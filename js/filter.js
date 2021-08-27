@@ -223,21 +223,22 @@ function filter() {
 
 }
 
-// //function to reset filter parameters
-// function resetFilter() {
+//function to reset filter parameters
+function resetFilter() {
 
-//     const dropDownYear = document.getElementById("filter-nav__movie-year");
-//     dropDownYear.selectedIndex = 0;
+    const dropDownYear = document.getElementById("filter-nav__movie-year");
+    dropDownYear.selectedIndex = 0;
 
-//     const dropDownGenre = document.getElementById("filter-nav__genre");
-//     dropDownGenre.selectedIndex = 0;
+    const dropDownGenre = document.getElementById("filter-nav__genre");
+    dropDownGenre.selectedIndex = 0;
 
-//     const dropDownRating = document.getElementById("filter-nav__rating");
-//     dropDownRating.selectedIndex = 0;
+    const dropDownRating = document.getElementById("filter-nav__rating");
+    dropDownRating.selectedIndex = 0;
 
-//     const dropDownSort = document.getElementById("filter-nav__sort");
-//     dropDownSort.selectedIndex = 0;
-// }
+    const dropDownSort = document.getElementById("filter-nav__sort");
+    dropDownSort.selectedIndex = 0;
+}
+
 
 //function to do infinite scroll on window
 let isScrolled = false;
