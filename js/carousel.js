@@ -1,25 +1,24 @@
-$(document).ready(function () {
-
-    $('.carousel').carousel();
-
-    setCarousel();
-
-});
-
 let genresArr;
 const APIKey = 'api_key=948abbb99b89ebe76dbe27b039bf28a8';
 const APIRequestPrefix = 'https://api.themoviedb.org/3/';
+
+$(document).ready(function () {
+
+    $('.carousel').carousel();
+    setCarousel();
+
+});
 
 //function to set all the information needed on carousel
 async function setCarousel() {
 
     await getGenres();
-
     await getNowPlayingMovies();
 }
 
 //function to make the request to api to get movies genres
 function getGenres() {
+
     const genresEndpoint = '/genre/movie/list?';
     return fetch(APIRequestPrefix + genresEndpoint + APIKey + '&language=en-US')
         .then(response => {
@@ -93,7 +92,6 @@ async function getYoutubeKey(id) {
 function getVideo(videoData) {
     for (video of videoData) {
         if (video.name.toLowerCase().includes('trailer')) {
-            // console.log(video.key)
             return video.key;
         }
     }
