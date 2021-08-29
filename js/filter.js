@@ -7,7 +7,7 @@ let movieTabToShow;
 let containerToPopulate;
 let genreId;
 
-//function that recives scroll logic
+// On scroll populating movies container and active sticky nav
 window.onscroll = function () {
 
     window.onscroll = function () {
@@ -28,11 +28,13 @@ window.onscroll = function () {
 
 window.onload = () => {
 
-    // populate the default selected movies' container (popular)
+    // populate the default selected movies' container (popular movies)
     movieTabToShow = getPopularMovies;
     movieTabToShow();
 
-    // populating movies container according to the genre tab selected
+    // according to the tab selected, calls the methods to set the active container to populate,
+    // and the methods that get the specific movie data from the API;
+    // manages the styles of tabs (current selected)
     document.querySelectorAll('.filter-bar__list-item').forEach(item => {
         item.addEventListener('click', e => {
 
@@ -80,7 +82,7 @@ window.onload = () => {
         select.appendChild(opt);
     }
     
-    // search by name event
+    // search movie by name 
     let searchInput = document.querySelector(".filter-bar__value");
     searchInput.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
@@ -89,7 +91,7 @@ window.onload = () => {
         }
     });
 
-    // function to user make a search by name that he write on a input box
+    // function to user make a search by name (written in an input box)
     function searchByName(input) {
 
         let id = document.getElementById('searchInput_movies_container');
@@ -100,7 +102,7 @@ window.onload = () => {
         requestAPI(url, id);
     }
 
-    // function to make input box appear and desappear
+    // Input box toggle
     let searchIcon = document.querySelector('#filter-bar__icon');
     searchIcon.addEventListener('click', () => {
 
@@ -111,10 +113,9 @@ window.onload = () => {
         }
 
     });
-
 }
 
-// generic function to make api requests
+// generic function to make api requests for movie data, with a given url, and populate an specific container with that data
 function requestAPI(url, id) {
 
     let htmlStr = '';
@@ -146,114 +147,7 @@ function requestAPI(url, id) {
         
 }
 
-//function to make api request to get popular movies 
-function getPopularMovies() {
-    
-    const popularMoviesEndpoint = 'movie/popular?'
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    const url = APIRequestPrefix + popularMoviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}`;
-    const url2 = APIRequestPrefix + popularMoviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}`;
-
-    const id = document.getElementById('popular_movies_container');
-
-    requestAPI(url, id);
-    requestAPI(url2, id);
-
-}
-
-//function to make api request to get now playing movies 
-function showNowPlayingMovies() {
-
-    const nowPlayingMoviesEndpoint = 'movie/now_playing?';
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    const url = APIRequestPrefix + nowPlayingMoviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}`;
-    const url2 = APIRequestPrefix + nowPlayingMoviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}`;
-
-    const id = document.getElementById('now_playing_movies_container');
-
-    requestAPI(url, id);
-    requestAPI(url2, id);
-
-}
-
-// function to prepare api request to get movies with a specific genre
-function showMoviesByGenre() {
-
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}` + genreEndpoint  + genreId;
-    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}` + genreEndpoint + genreId;
-
-    requestAPI(url, containerToPopulate);
-    requestAPI(url2, containerToPopulate);
-}
-
-
-//function to user can do a search with the parameters that he chose
-function filter() {
-
-    let id = document.getElementById('searchBtn_movies_container');
-    const genreEndpoint = document.getElementById('filter-nav__genre').value;
-    const sortByEndpoint = document.getElementById('filter-nav__sort').value;
-    const releaseDate = document.getElementById('filter-nav__movie-year').value;
-    const releaseDateEndPoint = `&primary_release_date.gte=${releaseDate}-01-01&primary_release_date.lte=${releaseDate}-12-31`;
-    const voteAvrEndpoint = document.getElementById('filter-nav__rating').value;
-    let url;
-
-    if (pageNum === 1) {
-        movies = [];
-    }
-
-    if (releaseDate) {
-        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint + `&page=${pageNum}`;
-    } else {
-        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}` + voteAvrEndpoint + genreEndpoint +`&page=${pageNum}`;
-    }
-
-    requestAPI(url, id);
-    pageNum--;
-
-}
-
-//function to reset filter parameters
-function resetFilter() {
-
-    const dropDownYear = document.getElementById("filter-nav__movie-year");
-    dropDownYear.selectedIndex = 0;
-
-    const dropDownGenre = document.getElementById("filter-nav__genre");
-    dropDownGenre.selectedIndex = 0;
-
-    const dropDownRating = document.getElementById("filter-nav__rating");
-    dropDownRating.selectedIndex = 0;
-
-    const dropDownSort = document.getElementById("filter-nav__sort");
-    dropDownSort.selectedIndex = 0;
-}
-
-
-//function to do infinite scroll on window
-let isScrolled = false;
-const infiniteScroll = () => {
-    if (window.scrollY > (document.body.offsetHeight - 100) && !isScrolled) {
-        isScrolled = true;
-        pageNum += 2;
-        movieTabToShow();
-        setTimeout(() => {
-            isScrolled = false;
-        }, 1000);
-    }
-}
-
-//function to set active container on tabs bar
+// function to set current active movies container
 function setActiveContainer(e) {
 
     let wrapper = document.getElementById("container_wrapper");
@@ -271,7 +165,7 @@ function setActiveContainer(e) {
     container.innerHTML = '';
 }
 
-//function to set active tab bar
+// function to set properties and call methods according to the current tab selected by user
 function setActiveTab(e) {
 
     switch (e.currentTarget.id) {
@@ -346,16 +240,113 @@ function setActiveTab(e) {
     }
 }
 
-//function to make the navbar sticky
-function myFunction(sticky, navbar) {
-    if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
+// create the url to get the popular movies data and call the request api generic function
+function getPopularMovies() {
+    
+    const popularMoviesEndpoint = 'movie/popular?'
+    if (pageNum === 1) {
+        movies = [];
+    }
+
+    const url = APIRequestPrefix + popularMoviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}`;
+    const url2 = APIRequestPrefix + popularMoviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}`;
+
+    containerToPopulate = document.getElementById('popular_movies_container');
+
+    requestAPI(url, containerToPopulate);
+    requestAPI(url2, containerToPopulate);
+
+}
+
+// create the url to get the now playing movies data and call the request api generic function
+function showNowPlayingMovies() {
+
+    const nowPlayingMoviesEndpoint = 'movie/now_playing?';
+    if (pageNum === 1) {
+        movies = [];
+    }
+
+    const url = APIRequestPrefix + nowPlayingMoviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}`;
+    const url2 = APIRequestPrefix + nowPlayingMoviesEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}`;
+
+    containerToPopulate = document.getElementById('now_playing_movies_container');
+
+    requestAPI(url, containerToPopulate);
+    requestAPI(url2, containerToPopulate);
+
+}
+
+// create the url to get movies with an specific genre data and call the request api generic function
+function showMoviesByGenre() {
+
+    if (pageNum === 1) {
+        movies = [];
+    }
+
+    let url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum}` + genreEndpoint  + genreId;
+    let url2 = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US&sort_by=popularity.desc&page=${pageNum + 1}` + genreEndpoint + genreId;
+
+    requestAPI(url, containerToPopulate);
+    requestAPI(url2, containerToPopulate);
+}
+
+
+// create the url to get movies that correspond to specific criteria that user chose and call the request api generic function
+function filter() {
+
+    containerToPopulate = document.getElementById('searchBtn_movies_container');
+    const genreEndpoint = document.getElementById('filter-nav__genre').value;
+    const sortByEndpoint = document.getElementById('filter-nav__sort').value;
+    const releaseDate = document.getElementById('filter-nav__movie-year').value;
+    const releaseDateEndPoint = `&primary_release_date.gte=${releaseDate}-01-01&primary_release_date.lte=${releaseDate}-12-31`;
+    const voteAvrEndpoint = document.getElementById('filter-nav__rating').value;
+    let url;
+
+    if (pageNum === 1) {
+        movies = [];
+    }
+
+    if (releaseDate) {
+        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}` + releaseDateEndPoint + voteAvrEndpoint + genreEndpoint + `&page=${pageNum}`;
     } else {
-        navbar.classList.remove("sticky");
+        url = APIRequestPrefix + discoverEndpoint + APIKey + `&language=en-US${sortByEndpoint}` + voteAvrEndpoint + genreEndpoint +`&page=${pageNum}`;
+    }
+
+    requestAPI(url, containerToPopulate);
+    pageNum--;
+
+}
+
+// function to reset search filter parameters
+function resetFilter() {
+
+    const dropDownYear = document.getElementById("filter-nav__movie-year");
+    dropDownYear.selectedIndex = 0;
+
+    const dropDownGenre = document.getElementById("filter-nav__genre");
+    dropDownGenre.selectedIndex = 0;
+
+    const dropDownRating = document.getElementById("filter-nav__rating");
+    dropDownRating.selectedIndex = 0;
+
+    const dropDownSort = document.getElementById("filter-nav__sort");
+    dropDownSort.selectedIndex = 0;
+}
+
+// function to populate movie container on windows scroll
+let isScrolled = false;
+const infiniteScroll = () => {
+    if (window.scrollY > (document.body.offsetHeight - 100) && !isScrolled) {
+        isScrolled = true;
+        pageNum += 2;
+        movieTabToShow();
+        setTimeout(() => {
+            isScrolled = false;
+        }, 1000);
     }
 }
 
-//function to show a randomize movie in a modal
+// function to get a random movie, with specific user criteria chose by user, and show its details in a modal
 async function randomize(pageNum) {
 
     let id = document.getElementById('searchBtn_movies_container');
@@ -421,6 +412,7 @@ async function randomize(pageNum) {
     })
 }
 
+// function to open the genres and filters menu at small devices
 function openMenu() {
 
     let navWrapper = document.querySelector('#nav-wrapper');
@@ -429,6 +421,7 @@ function openMenu() {
     closeButton.style.display = 'flex';
 }
 
+// function to close the genres and filters menu at small devices
 function closeMenu() {
     
     let navWrapper = document.querySelector('#nav-wrapper');
@@ -437,6 +430,7 @@ function closeMenu() {
     closeButton.style.display = 'none';
 }
 
+// function to check the response status of the api request
 function checkRequestError(response){
 	if(!response.ok){
         if(response.status === 404){
