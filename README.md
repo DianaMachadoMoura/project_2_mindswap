@@ -1,6 +1,6 @@
 # Movies Data Base - MindSwap
 This project was developed as part of the web development course for the front-end part at Mindera MindSwap.
-> Live demo [_here_](http://project_2_mindswap.github.com).
+> Live demo [_here_](https://toaraujo.github.io/project_2_mindswap/).
 
 ## Table of Contents
 * [General Info](#general-information)
