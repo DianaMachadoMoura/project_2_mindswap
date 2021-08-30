@@ -1,4 +1,4 @@
-# Movies Data Base - MindSwap
+# Movies WebApp - MindSwap
 This project was developed as part of the web development course for the front-end part at Mindera MindSwap.
 > Live demo [_here_](https://toaraujo.github.io/project_2_mindswap/).
 
@@ -32,7 +32,7 @@ This project was developed as part of the web development course for the front-e
 List the ready features here:
 - See information about movies
 - Search some movies with filters chosen by the user
-- Whatch the movies trailers 
+- Watch the movies trailers 
 - Modal with movies details
 - Infinite scroll
 - Responsive design
